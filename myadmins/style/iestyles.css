@@ -1,0 +1,213 @@
+.message-popup .message-popup-head {
+	ZOOM: 1
+}
+.message-popup .message-popup-content {
+	ZOOM: 1
+}
+.message-popup .message-popup-content .message {
+	ZOOM: 1
+}
+.login-form .form-buttons {
+	ZOOM: 1
+}
+.wrapper {
+	ZOOM: 1
+}
+.footer {
+	ZOOM: 1
+}
+.option-title {
+	ZOOM: 1
+}
+.columns {
+	ZOOM: 1
+}
+.main-col {
+	ZOOM: 1
+}
+.field-row {
+	ZOOM: 1
+}
+.nav-bar {
+	ZOOM: 1
+}
+UL.tabs-horiz {
+	ZOOM: 1
+}
+DL.accordion DT {
+	ZOOM: 1
+}
+.field-100 {
+	ZOOM: 1
+}
+.entry-edit FIELDSET LI {
+	ZOOM: 1
+}
+#nav {
+	ZOOM: 1
+}
+.main {
+	ZOOM: 1
+}
+.middle {
+	ZOOM: 1
+}
+.clear {
+	ZOOM: 1
+}
+.container {
+	ZOOM: 1
+}
+DL.accordion DT {
+	ZOOM: 1
+}
+.grid THEAD TH A {
+	ZOOM: 1
+}
+.content {
+	ZOOM: 1
+}
+.box-head {
+	ZOOM: 1
+}
+.header-top {
+	ZOOM: 1
+}
+UL.tabs {
+	ZOOM: 1
+}
+UL.tabs LI {
+	ZOOM: 1
+}
+UL.tabs LI SPAN {
+	ZOOM: 1
+}
+UL.tabs LI A {
+	ZOOM: 1
+}
+.address-list LI {
+	ZOOM: 1
+}
+.entry-edit .entry-edit-head {
+	ZOOM: 1
+}
+.notification-global {
+	ZOOM: 1
+}
+.files .row {
+	ZOOM: 1
+}
+.files-wide .row {
+	ZOOM: 1
+}
+.uploader .file-row {
+	ZOOM: 1
+}
+.grid TR.filter .range .range-line {
+	ZOOM: 1
+}
+.centinel .authentication {
+	ZOOM: 1
+}
+.paypal-payment-notice {
+	ZOOM: 1
+}
+.clear {
+	LINE-HEIGHT: 0; DISPLAY: block; HEIGHT: 0px; CLEAR: both; FONT-SIZE: 0px; OVERFLOW: hidden
+}
+INPUT.input-file {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px
+}
+INPUT.checkbox {
+	WIDTH: 13px; HEIGHT: 13px
+}
+INPUT.radio {
+	WIDTH: 13px; HEIGHT: 13px
+}
+BUTTON.disabled {
+	FILTER: alpha(opacity=80)
+}
+BUTTON.disabled:hover {
+	FILTER: alpha(opacity=80)
+}
+BUTTON.disabled:active {
+	FILTER: alpha(opacity=80)
+}
+#loading-mask {
+	FILTER: alpha(opacity=80)
+}
+#message-popup-window-mask {
+	FILTER: alpha(opacity=20)
+}
+.content-header-floating {
+	FILTER: alpha(opacity=85)
+}
+.message-popup .message-popup-content .message {
+	_height: 4.5em
+}
+BUTTON {
+	WIDTH: auto; MARGIN-LEFT: 5px; OVERFLOW: visible
+}
+.form-button {
+	WIDTH: auto; MARGIN-LEFT: 5px; OVERFLOW: visible
+}
+.massaction BUTTON {
+	WIDTH: auto; HEIGHT: 20px; MARGIN-LEFT: 0px; OVERFLOW: hidden
+}
+.hor-scroll {
+	PADDING-BOTTOM: 20px; OVERFLOW-Y: hidden
+}
+.grid TR.filter TH {
+	PADDING-BOTTOM: 3px; PADDING-TOP: 3px
+}
+.grid TR.filter TH INPUT {
+	MARGIN-RIGHT: -10px
+}
+.grid TR.filter TH .range INPUT {
+	MARGIN-RIGHT: 2px
+}
+BUTTON.icon-btn {
+	WIDTH: 31px
+}
+.nested-content .content-header {
+	POSITION: relative; ZOOM: 1
+}
+DL.accordion DT A {
+	WIDTH: 100%
+}
+DIV.collapseable A {
+	WIDTH: 100%
+}
+.product-image-gallery .grid TBODY TD {
+	PADDING-BOTTOM: 4px !important; PADDING-LEFT: 4px !important; PADDING-RIGHT: 4px !important; PADDING-TOP: 4px !important
+}
+.massaction .entry-edit FIELDSET {
+	FLOAT: right
+}
+.massaction .entry-edit FIELDSET BUTTON.scalable {
+	TEXT-ALIGN: center !important; MARGIN-TOP: 1px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px
+}
+.content-header {
+	ZOOM: 1
+}
+#tree-div {
+	PADDING-BOTTOM: 30px; OVERFLOW-X: auto !important; OVERFLOW-Y: hidden !important; HEIGHT: auto !important
+}
+#nav UL LI {
+	WIDTH: 185px; FLOAT: left; CLEAR: left
+}
+#nav UL LI.active {
+	WIDTH: 185px; FLOAT: left; CLEAR: left
+}
+#nav UL A SPAN {
+	ZOOM: 1
+}
+.grid-severity-critical {
+	MARGIN: 3px 0px
+}
+.grid-severity-major {
+	MARGIN: 3px 0px
+}
+.grid-severity-minor {
+	MARGIN: 3px 0px
+}

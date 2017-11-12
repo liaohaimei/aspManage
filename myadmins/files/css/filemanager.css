@@ -1,0 +1,56 @@
+@charset "utf-8";
+body,div,ul,li,input{ font-size:12px; font-family:Arial, Helvetica, sans-serif; padding:0; margin:0; list-style:none}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;} 
+* html .clearfix {height: 1%;} 
+.clearfix {display: block;} 
+.clear{clear:both}
+img { vertical-align:middle; border:0}
+
+#upload{ width:570px;margin:0px; padding:0px; text-align:left}
+#dialog{ text-align:left; line-height:30px}
+#dialog .inputText{ border:1px #ddd solid; padding:0 3px; height:24px; line-height:24px; width:180px}
+#filemanager{ margin:0px auto; text-align:left; width:100%;}
+#filelists{ width:100%;margin:0px; padding:0px}
+#moswf{ margin:0}
+.details{ font-size:9px; color:#bbb}
+.fl{ cursor:pointer}
+.filename{ width:90%; margin-left:40px}
+.filesize{ width:80%; margin-right:10px}
+.list{height:40px;display:block;margin:0;top:0;text-align:left;width:100%; over-flow:hidden; border-bottom:1px #eee solid;}
+.list div { float:left; height:40px; line-height:42px; text-align:left; overflow:hidden}
+.list div.checkbox{width:30px ; text-align:center}
+.list div.w_name{width:65% ; text-align:left}
+.list div.w_createdate{width:20%}
+.list div.w_moddate{width:20%}
+.list div.w_size{width:10%; text-align:right}
+.h24{border-bottom:1px #ddd solid; background-color:#efefef; font-weight:bold; cursor:pointer}
+
+#page{ padding-left:10px}
+#path{ height:40px; line-height:40px}
+.red{ color:red}
+.green{ color:green}
+.bold{ font-weight:bold}
+.underline{ text-decoration:underline}
+
+.ico{ width:16px; height:16px; background:url(../images/ico_actions.gif) no-repeat}
+.ico_delete{ background-position:-141px -20px}
+.ico_download{background-position:-97px -40px}
+.ico_rename{background-position:0px -79px}
+.ico_upload{background-position:0px -39px}
+.ico_create{background-position:-20px -39px}
+.ico_open{background-position:0px 0px}
+.ico_refresh{background-position:-41px -39px}
+.ico_attr{background-position:-2px -60px}
+.ico_search{background-position:-82px -81px}
+.ico_createmenu{background-position:-121px 0px}
+.ico_uploadmenu{background-position:-97px -60px}
+.ico16{width:16px; height:16px; }
+.ico_asc{background:url(../images/asc.png) no-repeat}
+.ico_desc{background:url(../images/desc.png) no-repeat}
+
+#filesystem_contextmenu{position:absolute; width:160px; height:auto;display:block;text-align:left; padding:5px; border:#ccc solid 1px; background-color:#efefef}
+#filesystem_contextmenu div{ height:24px; line-height:24px; cursor:pointer; width:100%;overflow:hidden;}
+#filesystem_contextmenu div.cm_name{ font-weight:bold; border-bottom:1px #ccc solid}
+#filesystem_contextmenu div.cm_split{ border-bottom:1px #ccc solid}
+#result{ display:block; height:24px; line-height:24px; font-weight:bold; padding-left:10px}

@@ -1,0 +1,242 @@
+﻿@charset "utf-8";
+.fp{ background-repeat:no-repeat; background-position:3px 5px;background-image: url(../images/icon/blank.gif);}
+.fp-folder{
+	background-image: url(../images/icon/folder.gif);
+}
+.fp-up{
+	background-image: url(../images/icon/up.gif);
+}
+.fp-unknown {
+	background-image: url(../images/icon/blank.gif);
+}
+.fp-cmd,.fp-bat {
+	background-image: url(../images/icon/cmd.gif);
+}
+.fp-exe {
+	background-image: url(../images/icon/exe.gif);
+}
+.fp-dll,.fp-ocx {
+	background-image: url(../images/icon/dll.gif);
+}
+.fp-ipa {
+	background-image: url(../images/icon/ipa.gif);
+}
+.fp-bt {
+	background-image: url(../images/icon/bt.gif);
+}
+.fp-apk {
+	background-image: url(../images/icon/apk.gif);
+}
+.fp-cdr {
+	background-image: url(../images/icon/cdr.gif);
+}
+.fp-msi {
+	background-image: url(../images/icon/msi.gif);
+}
+.fp-dmg {
+	background-image: url(../images/icon/dmg.gif);
+}
+.fp-iso {
+	background-image: url(../images/icon/iso.gif);
+}
+.fp-rar {
+	background-image: url(../images/icon/rar.gif);
+}
+.fp-zip {
+	background-image: url(../images/icon/zip.gif);
+}
+.fp-7z {
+	background-image: url(../images/icon/7z.gif);
+}
+.fp-cab {
+	background-image: url(../images/icon/cab.gif);
+}
+.fp-asp {
+	background-image: url(../images/icon/asp.gif);
+}
+.fp-jsp {
+	background-image: url(../images/icon/p.gif);
+}
+.fp-c,
+.fp-cpp {
+	background-image: url(../images/icon/cpp.gif);
+}
+.fp-css {
+	background-image: url(../images/icon/css.gif);
+}
+.fp-eml {
+	background-image: url(../images/icon/email.gif);
+}
+.fp-fon,.fp-ttc,.fp-ttf {
+	background-image: url(../images/icon/font.gif);
+}
+.fp-ini,
+.fp-inf {
+	background-image: url(../images/icon/ini.gif);
+}
+.fp-htm,
+.fp-html {
+	background-image: url(../images/icon/ie.gif);
+}
+.fp-js {
+	background-image: url(../images/icon/js.gif);
+}
+.fp-php {
+	background-image: url(../images/icon/php.gif);
+}
+.fp-tpl {
+	background-image: url(../images/icon/tpl.gif);
+}
+.fp-xml {
+	background-image: url(../images/icon/xml.gif);
+}
+.fp-h,
+.fp-cs,
+.fp-plist {
+	background-image: url(../images/icon/code.gif);
+}
+.fp-chm {
+	background-image: url(../images/icon/chm.gif);
+}
+.fp-doc,
+.fp-docx,
+.fp-docm,
+.fp-dot,
+.fp-dotx,
+.fp-dotm {
+	background-image: url(../images/icon/doc.gif);
+}
+.fp-pdf {
+	background-image: url(../images/icon/pdf.gif);
+}
+.fp-ppt,
+.fp-pptx,
+.fp-pptm {
+	background-image: url(../images/icon/ppt.gif);
+}
+.fp-log,.fp-txt {
+	background-image: url(../images/icon/txt.gif);
+}
+.fp-rtf {
+	background-image: url(../images/icon/rtf.gif);
+}
+.fp-reg {
+	background-image: url(../images/icon/reg.gif);
+}
+.fp-csv,
+.fp-xls,
+.fp-xlsx,
+.fp-xlsm,
+.fp-xltx,
+.fp-xltm,
+.fp-xlam,
+.fp-xlsb {
+	background-image: url(../images/icon/xls.gif);
+}
+.fp-gif {
+	background-image: url(../images/icon/gif.gif);
+}
+.fp-jpg,
+.fp-jpeg {
+	background-image: url(../images/icon/jpg.gif);
+}
+.fp-png {
+	background-image: url(../images/icon/png.gif);
+}
+.fp-ico {
+	background-image: url(../images/icon/ico.gif);
+}
+.fp-bmp{
+	background-image: url(../images/icon/bmp.gif);
+}
+.fp-tiff{
+	background-image: url(../images/icon/tif.gif);
+}
+.fp-emf{
+	background-image: url(../images/icon/emf.gif);
+}
+.fp-wmf{
+	background-image: url(../images/icon/wmf.gif);
+}
+.fp-exif{
+	background-image: url(../images/icon/img.gif);
+}
+.fp-raw {
+	background-image: url(../images/icon/raw.gif);
+}
+.fp-mp3 {
+	background-image: url(../images/icon/mp3.gif);
+}
+.fp-wma {
+	background-image: url(../images/icon/wma.gif);
+}
+.fp-wav,
+.fp-midi,
+.fp-flac,
+.fp-ram,
+.fp-ra,
+.fp-mid,
+.fp-aac,
+.fp-m4a,
+.fp-ape,
+.fp-au,
+.fp-ogg {
+	background-image: url(../images/icon/music.gif);
+}
+.fp-ai {
+	background-image: url(../images/icon/ai.gif);
+}
+.fp-fla {
+	background-image: url(../images/icon/fla.gif);
+}
+.fp-psd {
+	background-image: url(../images/icon/psd.gif);
+}
+.fp-swf {
+	background-image: url(../images/icon/swf.gif);
+}
+.fp-3g2,
+.fp-3gp,
+.fp-3gp2,
+.fp-3gpp {
+	background-image: url(../images/icon/3gp.gif);
+}
+.fp-flv {
+	background-image: url(../images/icon/flv.gif);
+}
+.fp-mov {
+	background-image: url(../images/icon/quick.gif);
+}
+.fp-rm,.fp-rmvb {
+	background-image: url(../images/icon/rmvb.gif);
+}
+.fp-avi,.fp-wmv {
+	background-image: url(../images/icon/media.gif);
+}
+.fp-mpe,
+.fp-mpeg,
+.fp-mpg,
+.fp-mp4,
+.fp-mpeg4 {
+	background-image: url(../images/icon/mpg.gif);
+}
+.fp-asf,
+.fp-ram,
+.fp-m1v,
+.fp-m2v,
+.fp-mpe,
+.fp-mpeg,
+.fp-mpg,
+.fp-m4b,
+.fp-m4p,
+.fp-m4v,
+.fp-vob,
+.fp-divx,
+.fp-mkv,
+.fp-ogm,
+.fp-webm,
+.fp-ass,
+.fp-srt,
+.fp-ssa {
+	background-image: url(../images/icon/video.gif);
+}
