@@ -95,7 +95,12 @@ end if
                   <label for="input-type">所属栏目</label>
                   <div>
                     <select name="parent_id"  id="input-type" class="form-control">
-                      <option value="<%=getPar("id")%>"><%=getName(getPar("id"))%></option>
+                      <%
+                      pid=getParentId(getPar("id"))
+                      cid=getPar("id")
+                      %>
+                      <%if pid=0 then%><option value="0">顶级</option><%end if%>
+                      <%Call SelectList(0,cid,"")%>
                     </select>
                   </div>
                 </div>
@@ -241,6 +246,12 @@ end if
     },
     _alertMes:function(){
       layer.msg('添加成功', {btn: ['继续添加', '退出添加'],no: function(index, layero){},btn2: function(index, layero){window.parent.location.reload();parent.layer.closeAll();}});
+    },
+    _alertSuccess:function(){
+      layer.msg('修改成功',{
+        icon: 1,
+        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+      },function(){window.parent.location.reload();parent.layer.closeAll();});
     }    
   };
 </script>

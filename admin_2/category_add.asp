@@ -15,10 +15,10 @@ echo "<script>$(function(){fun._alertMes()})</script>"
 end if
 '修改
 if action="1" then
-sqlstr="n_type="&n_type&",n_name='"&n_name&"',n_cname='"&n_cname&"',n_description='"&n_description&"'"
+sqlstr="parent_id="&parent_id&",n_type="&n_type&",n_name='"&n_name&"',n_cname='"&n_cname&"',n_description='"&n_description&"'"
 updateSql = "update {pre}Category  set "&sqlstr&" where ID="&getForm("id","get")
 dbconn.db updateSql,"execute"
-echo "<script>$(function(){fun._alertMes()})</script>"
+echo "<script>$(function(){fun._alertSuccess()})</script>"
 end if
 
 
@@ -46,6 +46,34 @@ end function
 function delOneData(id)
 sql="delete from {pre}Category where ID = "&id
 delOneData = dbconn.db(sql,"execute")
+end function
+
+'参数LeftText可以很方便的区分父栏目与子栏目之间的'错位'关系
+Function SelectList(ID,cid, LeftText)
+Dim Rs, Sql, ChildCount
+Sql= "select ID,n_name from {pre}Category where parent_id="&ID&" order by id"
+set Rs = dbconn.db(Sql,"records1")
+Do While Not Rs.EOF
+Sql2 = "Select Count(*) from {pre}Category where parent_id = "&Rs(0)&""
+ChildCount = dbconn.db(Sql2,"execute")(0) '子栏目数量
+if Rs(0)=getParentId(cid) then selectedStr=" selected" else selectedStr="" end if '所属分类（父级）
+if Rs(0)=cid+0 then disabled	= "disabled" else disabled="" end if '禁止选择当前分类
+echo"<option value=""" & Rs(0) & """ "&selectedStr&" "&disabled&">" & LeftText & Rs(1) & "</option>" & vbCrLf
+If ChildCount > 0 Then Call SelectList(Rs(0),cid, LeftText & "  ┣ ") '递归
+Rs.MoveNext
+Loop
+Rs.Close
+Set Rs = Nothing
+End Function
+
+'获取父级ID
+function getParentId(id)
+if id<>"" and id<>0 then
+sql = "select parent_id from {pre}Category where ID = "&id
+getParentId = dbconn.db(sql,"records1")(0)
+else
+getParentId=0
+end if
 end function
 
 %>
