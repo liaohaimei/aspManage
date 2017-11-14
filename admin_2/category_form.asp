@@ -92,15 +92,21 @@ end if
                     <input type="text" class="form-control" id="input-cname" name="n_cname" value="<%=n_cname%>"></div>
                 </div>
                 <div class="form-group">
+                  
                   <label for="input-type">所属栏目</label>
                   <div>
                     <select name="parent_id"  id="input-type" class="form-control">
                       <%
                       pid=getParentId(getPar("id"))
                       cid=getPar("id")
+                      ac=getPar("ac")
                       %>
-                      <%if pid=0 then%><option value="0">顶级</option><%end if%>
-                      <%Call SelectList(0,cid,"")%>
+                      <%if ac=0 then%>
+                        <option value="<%=cid%>"><%=getName(cid)%></option>
+                      <%else%>
+                        <%if pid=0 then%><option value="0">顶级</option><%end if%>
+                        <%Call SelectList(0,cid,"")%>
+                      <%end if%>
                     </select>
                   </div>
                 </div>

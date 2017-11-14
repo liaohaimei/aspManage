@@ -22,8 +22,6 @@ echo "<script>$(function(){fun._alertSuccess()})</script>"
 end if
 
 
-
-
 function getPar(id)
 getPar=getForm(id,"get")
 if varNull(getPar)=false then
@@ -49,7 +47,7 @@ delOneData = dbconn.db(sql,"execute")
 end function
 
 '参数LeftText可以很方便的区分父栏目与子栏目之间的'错位'关系
-Function SelectList(ID,cid, LeftText)
+Function SelectList(ID,cid,LeftText)
 Dim Rs, Sql, ChildCount
 Sql= "select ID,n_name from {pre}Category where parent_id="&ID&" order by id"
 set Rs = dbconn.db(Sql,"records1")

@@ -104,11 +104,6 @@
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
-                                     <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold red" onClick="popAdd(1)"> 修改
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
                                     <div class="actions">
                                         <a class="btn btn-icon-only btn-default" href="javascript:;">
                                             <i class="icon-cloud-upload"></i>
@@ -214,6 +209,18 @@ function popAdd(){
     content: 'category_form.asp'+par+par2
   });
 }
+function popDel(){
+  //是否删除
+  layer.confirm('是否删除',{
+  btn: ['按钮一', '按钮三'], //可以无限个按钮
+  btn2: function(index, layero){
+    alert("3");
+  }
+}, function(index, layero){
+  alert(1);
+});
+}
+
 </script>
 
 
@@ -242,7 +249,7 @@ function popAdd(){
                                                             <i class="fa fa-plus"></i> 添加子类 </a>
                 <a href="javascript:;" class="btn btn-outline btn-circle btn-xs purple" onClick="popAdd(<%=Rs(0)%>,1)">
                                                             <i class="fa fa-edit"></i> 编辑 </a>
-                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black">
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black" onClick="popDel()">
                                                             <i class="fa fa-trash-o"></i> 删除 </a>
 
             </td>
