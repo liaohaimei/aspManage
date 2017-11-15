@@ -40,11 +40,6 @@ getName = dbconn.db(sql,"records1")(0)
 end if
 end function
 
-'删除一条数据
-function delOneData(id)
-sql="delete from {pre}Category where ID = "&id
-delOneData = dbconn.db(sql,"execute")
-end function
 
 '参数LeftText可以很方便的区分父栏目与子栏目之间的'错位'关系
 Function SelectList(ID,cid,LeftText)

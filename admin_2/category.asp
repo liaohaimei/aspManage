@@ -100,7 +100,7 @@
                             <div class="portlet light ">
                                 <div class="portlet-title">
                                     <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold green" onClick="popAdd()"> 添加
+                                        <button id="sample_editable_1_new" class="btn sbold green" onClick="fun.popAdd()"> 添加根节点
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -187,39 +187,57 @@
 
 <script src="../assets/layer/layer.js"></script>
   <script>
-function popAdd(){
-  var par="",
-      title="",
-      action=0;
-  if (arguments[0]!=''){
-    par="?id="+arguments[0];
-  }
-  if (arguments[1]!=''){
-    action=arguments[1];
-    par2="&ac="+arguments[1];
-  }
-  action?title="修改":title="添加"
-  //iframe层
-  layer.open({
-    title:title,
-    type: 2,
-    area: ['90%', '90%'],
-    fixed: true, //不固定
-    maxmin: true,
-    content: 'category_form.asp'+par+par2
-  });
-}
-function popDel(){
-  //是否删除
-  layer.confirm('是否删除',{
-  btn: ['按钮一', '按钮三'], //可以无限个按钮
-  btn2: function(index, layero){
-    alert("3");
-  }
-}, function(index, layero){
-  alert(1);
-});
-}
+var fun = {
+    popAdd:function(){//添加、修改
+        var par="",
+            par2="",
+            title="",
+            action=0;
+        if (arguments[0]!=undefined){
+          action=0;
+          par="?id="+arguments[0];
+        }
+        
+        if (arguments[1]!=undefined){
+          action=arguments[1];
+          par2="&ac="+arguments[1];
+        }
+        action?title="修改":title="添加"
+        //iframe层
+        layer.open({
+          title:title,
+          type: 2,
+          area: ['90%', '90%'],
+          fixed: true, //不固定
+          maxmin: true,
+          content: 'category_form.asp'+par+par2
+        });
+      },
+      popDel:function(id){//是否删除
+        layer.confirm('确定删除？', {icon: 3, title:'提示'}, function(index){
+            fun.ajaxDel(id);
+            window.parent.location.reload();
+            layer.close(index);
+        });
+      },
+      ajaxDel:function(id){
+        $.ajax({
+               type: "GET",
+               url: "category_del.asp",
+               data: {pid:id },
+               success: function (data) {
+                  console.log(data);
+                  if(data=="True"){
+                  layer.alert('删除成功', {icon: 1});
+                  }else{
+                  layer.alert('删除失败', {icon: 2});
+
+                  }
+               }
+        });
+      }
+
+    }
 
 </script>
 
@@ -245,11 +263,11 @@ function popDel(){
             <td><%=Rs(2)%></td>
             <td> <a class="btn"></a> </td>
             <td>
-                <a href="javascript:;" class="btn btn-outline btn-circle info btn-xs blue"  onClick="popAdd(<%=Rs(0)%>)">
+                <a href="javascript:;" class="btn btn-outline btn-circle info btn-xs blue"  onClick="fun.popAdd(<%=Rs(0)%>)">
                                                             <i class="fa fa-plus"></i> 添加子类 </a>
-                <a href="javascript:;" class="btn btn-outline btn-circle btn-xs purple" onClick="popAdd(<%=Rs(0)%>,1)">
+                <a href="javascript:;" class="btn btn-outline btn-circle btn-xs purple" onClick="fun.popAdd(<%=Rs(0)%>,1)">
                                                             <i class="fa fa-edit"></i> 编辑 </a>
-                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black" onClick="popDel()">
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black" onClick="fun.popDel(<%=Rs(0)%>)">
                                                             <i class="fa fa-trash-o"></i> 删除 </a>
 
             </td>

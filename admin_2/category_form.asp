@@ -66,8 +66,10 @@
                           <div class="col-md-12">
                               <!-- BEGIN SAMPLE TABLE PORTLET-->
 <%
-cid=getPar("id")
-if cid<>"" then
+pid=getParentId(getPar("id")) '父级ID
+cid=getPar("id")              '当前ID
+ac=getPar("ac")               '修改状态
+if cid<>"" and ac<>0 then
 sql = "select * from {pre}Category where ID = "&cid
 set rsObj = dbconn.db(sql,"records1")
 if not rsObj.eof then
@@ -96,11 +98,6 @@ end if
                   <label for="input-type">所属栏目</label>
                   <div>
                     <select name="parent_id"  id="input-type" class="form-control">
-                      <%
-                      pid=getParentId(getPar("id"))
-                      cid=getPar("id")
-                      ac=getPar("ac")
-                      %>
                       <%if ac=0 then%>
                         <option value="<%=cid%>"><%=getName(cid)%></option>
                       <%else%>

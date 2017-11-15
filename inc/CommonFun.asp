@@ -6,7 +6,7 @@ End Function
 
 '判断变量是否为空
 Function varNull(var)
-if var="undefined" then varNull=false else varNull=true end if
+if var="undefined" or var="" then varNull=false else varNull=true end if
 end Function
 
 '弹出信息
