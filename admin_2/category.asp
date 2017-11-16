@@ -216,7 +216,7 @@ var fun = {
       popDel:function(id){//是否删除
         layer.confirm('确定删除？', {icon: 3, title:'提示'}, function(index){
             fun.ajaxDel(id);
-            window.parent.location.reload();
+            window.location.reload();
             layer.close(index);
         });
       },
