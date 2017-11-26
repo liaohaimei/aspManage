@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <div class="table-scrollable">
-                                        <table class="table table-hover">
+                                        <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th> # </th>

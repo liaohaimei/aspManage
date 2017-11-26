@@ -1,16 +1,46 @@
+<!--#include file="admin_inc.asp"-->
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>table模块快速使用</title>
     <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/layui/css/style.css" media="all">
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+
+
 
 </head>
-<!--#include file="admin_inc.asp"-->
 <body>
- <button class="layui-btn" onclick="fun.popAdd()"> 添加根节点</button>   
-<form class="layui-form layui-form-pane" action="">
-    <table class="layui-table">
+<div class="container-fluid">
+  <blockquote class="layui-elem-quote news_search">
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+          <input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+        </div>
+        <a class="layui-btn search_btn">查询</a>
+    </div>
+    <div class="layui-inline">
+      <a class="layui-btn layui-btn-normal newsAdd_btn">添加文章</a>
+    </div>
+    <div class="layui-inline">
+      <a class="layui-btn recommend" style="background-color:#5FB878">推荐文章</a>
+    </div>
+    <div class="layui-inline">
+      <a class="layui-btn audit_btn">审核文章</a>
+    </div>
+    <div class="layui-inline">
+      <a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+    </div>
+    <div class="layui-inline">
+      <div class="layui-form-mid layui-word-aux">本页面刷新后除新添加的文章外所有操作无效，关闭页面所有数据重置</div>
+    </div>
+  </blockquote>
+<button class="layui-btn" onclick="fun.popAdd()"> 添加根节点</button>   
+<form class="layui-form layui-form-pane">
+    <table class="layui-table" lay-even>
         <thead>
             <tr>
                 <th lay-data="{field:'id', width:80, sort: true}">ID</th>
@@ -26,8 +56,10 @@
             %>
         </tbody>
     </table>
-    </form>
-    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+</form>
+</div>    
+    <script src="../assets/scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/layer/layer.js"></script>
     <script src="./plugins/layui/layui.js"></script>
     <script>
         layui.use('table', function() {
@@ -51,36 +83,6 @@
 
             //创建一个编辑器
             var editIndex = layedit.build('LAY_demo_editor');
-
-            //自定义验证规则
-            form.verify({
-                title: function(value) {
-                    if (value.length < 5) {
-                        return '标题至少得5个字符啊';
-                    }
-                },
-                pass: [/(.+){6,12}$/, '密码必须6到12位'],
-                content: function(value) {
-                    layedit.sync(editIndex);
-                }
-            });
-
-            //监听指定开关
-            form.on('switch(switchTest)', function(data) {
-                layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                    offset: '6px'
-                });
-                layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-            });
-
-            //监听提交
-            form.on('submit(demo1)', function(data) {
-                layer.alert(JSON.stringify(data.field), {
-                    title: '最终的提交信息'
-                })
-                return false;
-            });
-
 
         });
     </script>
@@ -160,17 +162,14 @@ var fun = {
             <td><%=Rs(2)%></td>
             <td> <a class="btn"></a> </td>
             <td>
-                <a href="javascript:;" class="btn btn-outline btn-circle info btn-xs blue"  onClick="fun.popAdd(<%=Rs(0)%>)">
-                                                            <i class="fa fa-plus"></i> 添加子类 </a>
-                <a href="javascript:;" class="btn btn-outline btn-circle btn-xs purple" onClick="fun.popAdd(<%=Rs(0)%>,1)">
-                                                            <i class="fa fa-edit"></i> 编辑 </a>
-                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black" onClick="fun.popDel(<%=Rs(0)%>)">
-                                                            <i class="fa fa-trash-o"></i> 删除 </a>
+                <a href="javascript:;" class="btn btn-outline btn-circle info btn-xs blue" onClick="fun.popAdd(<%=Rs(0)%>)"><i class="fa fa-plus"></i> 添加子类 </a>
+                <a href="javascript:;" class="btn btn-outline btn-circle btn-xs purple" onClick="fun.popAdd(<%=Rs(0)%>,1)"><i class="fa fa-edit"></i> 编辑 </a>
+                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-xs black" onClick="fun.popDel(<%=Rs(0)%>)"><i class="fa fa-trash-o"></i> 删除 </a>
 
             </td>
         </tr>
     <%   
-    If ChildCount > 0 Then Call CategoryList(Rs(0), LeftText & "<span style='color:#DDD;'>|-----</span>") '递归
+    If ChildCount > 0 Then Call CategoryList(Rs(0), LeftText & "<span style='color:#DDD;'>|---</span>") '递归
     Rs.MoveNext
     Loop
     Rs.Close

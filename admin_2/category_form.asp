@@ -194,7 +194,7 @@ end if
     var ue = UE.getEditor('input-description');
 </script>
 <!-- 加载编辑器的容器 -->
-<!-- <textarea id="uploadEditor" style="display: none;"></textarea> -->
+<textarea id="uploadEditor" style="display: none;"></textarea>
  
 <!-- 使用ue -->
 <script type="text/javascript">
