@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalabel=no" />
+    <meta name="renderer" content="webkit" />
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
+    <link type="text/css" src="css/layer.css" />
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+    <style type="text/css">
+        html, body
+        {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, q, dl, dt, dd, ol, ul, li, fieldset, form, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section
+        {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 14px;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        
+        .tips
+        {
+            width: 50%;
+            height: auto;
+            margin: auto;
+            border: 1px solid #fff;
+            padding: 20px 0px;
+            text-align: center;
+            font-size: 16px;
+            color: #fefefe;
+            background: rbga(220,220,220,0.8);
+            word-wrap:break-word
+        }
+    </style>
+    <script type="text/javascript">
+        String.prototype.replaceAll = function (s1, s2) {
+            return this.replace(new RegExp(s1, "gm"), s2);
+        }
+        function unencode(str) {
+            //str.replace(/M'icrosoft/g, "W3School")
+            replacementStr = "@_'_@"
+            return str.replaceAll(replacementStr, "\"")
+        }
+
+        var pointer = {
+            sql_class: "Web_News", //表名
+            sql_top: "",  //取数据总条数 top 10
+            sql_colums: "*",//列名，用","隔开，如果全部获取，则填写"*" 
+            sql_whereBy: "and NewsType_id =78",
+            sql_orderBy: "order by News_ID asc"
+        }
+        var url = "http://192.168.0.101:701/index_json.asp"
+        $.post(
+            url,
+			pointer,
+            function (data) {
+                $('#ajax_data').html(JSON.stringify(data));
+                var total = data.total;
+                //$('#ajax_data').html(total);
+            }
+        , "json"
+        );
+    </script>
+</head>
+<body style="padding: 0px; margin: 0px;">aaa
+    <div id="ajax_data" class="tips">
+    </div>
+</body>
+</html>
