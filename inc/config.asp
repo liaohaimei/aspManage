@@ -1,6 +1,7 @@
 <%
 dim siteName,siteUrl,sitePath,databaseType,databaseServer,databaseName,databaseUser,databasepwd,accessFilePath,templateFileFolder,defaultTemplate,sitePictype,sitePicsize,siteSofttype,siteSoftsize,isCut,siteNewspicsize,sitePhotopicsize,siteCasepicsize,siteDownpicsize,siteProductpicsize,runMode,guestmode,siteVisiteJs,siteKeyWords,siteNotice,siteDes,copyRight,language,seo
 
+salt="yii2"
 seo="block"
 language="block"
 siteName="wspcms"
