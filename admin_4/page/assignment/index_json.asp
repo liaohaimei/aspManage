@@ -23,11 +23,16 @@ a=j.toJSON(empty,r,false)
 
 <%
     Dim sql_class,sql_top,sql_colums,sql_whereBy,sql_orderBy
-    sql_class = request.Item("sql_class")
-    sql_top = request.Item("sql_top")
-    sql_colums = request.Item("sql_colums")
-    sql_whereBy = request.Item("sql_whereBy")
-    sql_orderBy = request.Item("sql_orderBy")
+    ' sql_class = request.Item("sql_class")
+    ' sql_top = request.Item("sql_top")
+    ' sql_colums = request.Item("sql_colums")
+    ' sql_whereBy = request.Item("sql_whereBy")
+    ' sql_orderBy = request.Item("sql_orderBy")
+    sql_class = "wspcms_admin"
+    sql_top = ""
+    sql_colums = "id,username,email"
+    sql_whereBy = ""
+    sql_orderBy = "order by id asc"
 
     Sql="select "&sql_top&" "&sql_colums&" from "&sql_class&" where 1=1 "&sql_whereBy&" "&sql_orderBy
 %>
@@ -55,6 +60,6 @@ a=j.toJSON(empty,r,false)
     json_ret.Add "rows",myArray 
     jsonStr = jsonObj.toJSON(Empty,json_ret,False)
 
-    response.Write jsonStr
+    echo jsonStr
 
 %>

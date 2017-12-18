@@ -8,7 +8,8 @@ layui.config({
 
 	//加载页面数据
 	var usersData = '';
-	$.get("userdata.json", function(data){
+	$.get("index_json.asp", function(data){
+		data=JSON.parse(data);
 		usersData = data.rows;
 		if(window.sessionStorage.getItem("addUser")){
 			var addUser = window.sessionStorage.getItem("addUser");
@@ -25,7 +26,7 @@ layui.config({
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	$.ajax({
-					url : "userdata.json",
+					url : "index_json.asp",
 					type : "get",
 					dataType : "json",
 					success : function(data){
