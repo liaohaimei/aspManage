@@ -7,8 +7,16 @@ layui.config({
 		$ = layui.jquery;
 
 	//加载页面数据
+	var url = "index_json.asp"  
+	var relations = {  
+	    sql_class: "wspcms_admin", //表名  
+	    sql_top: "",  //取数据总条数 top 10  
+	    sql_colums: "id,username,email", //列名，用","隔开，如果全部获取，则填写"*"   
+	    sql_whereBy: "",  
+	    sql_orderBy: "order by id asc"  
+	}
 	var usersData = '';
-	$.get("index_json.asp", function(data){
+	$.post(url,relations, function(data){
 		data=JSON.parse(data);
 		usersData = data.rows;
 		if(window.sessionStorage.getItem("addUser")){
@@ -21,16 +29,24 @@ layui.config({
 
 	//查询
 	$(".search_btn").click(function(){
+		var url = "index_json.asp" 
+		var relations = {  
+	    sql_class: "wspcms_admin", //表名  
+	    sql_top: "",  //取数据总条数 top 10  
+	    sql_colums: "id,username,email", //列名，用","隔开，如果全部获取，则填写"*"   
+	    sql_whereBy: "",  
+	    sql_orderBy: "order by id asc"  
+	}
 		var userArray = [];
 		if($(".search_input").val() != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
             setTimeout(function(){
             	$.ajax({
-					url : "index_json.asp",
-					type : "get",
+					url : url,
+					type : "post",
+					data : relations,
 					dataType : "json",
 					success : function(data){
-
 						if(window.sessionStorage.getItem("addUser")){
 							var addUser = window.sessionStorage.getItem("addUser");
 							usersData = JSON.parse(addUser).concat(data);
