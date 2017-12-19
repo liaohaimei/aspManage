@@ -29,14 +29,6 @@ layui.config({
 
 	//查询
 	$(".search_btn").click(function(){
-		var url = "index_json.asp" 
-		var relations = {  
-	    sql_class: "wspcms_admin", //表名  
-	    sql_top: "",  //取数据总条数 top 10  
-	    sql_colums: "id,username,email", //列名，用","隔开，如果全部获取，则填写"*"   
-	    sql_whereBy: "",  
-	    sql_orderBy: "order by id asc"  
-	}
 		var userArray = [];
 		if($(".search_input").val() != ''){
 			var index = layer.msg('查询中，请稍候',{icon: 16,time:false,shade:0.8});
@@ -102,12 +94,15 @@ layui.config({
 		}
 	})
 
+
+
+
 	//添加会员
 	$(".usersAdd_btn").click(function(){
 		var index = layui.layer.open({
 			title : "添加会员",
 			type : 2,
-			content : "addUser.html",
+			content : "create.asp",
 			success : function(layero, index){
 				setTimeout(function(){
 					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
