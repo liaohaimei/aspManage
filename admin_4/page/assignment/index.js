@@ -11,7 +11,7 @@ layui.config({
 	var relations = {  
 	    sql_class: "wspcms_admin", //表名  
 	    sql_top: "",  //取数据总条数 top 10  
-	    sql_colums: "id,username,email", //列名，用","隔开，如果全部获取，则填写"*"   
+	    sql_colums: "id,username,email,status", //列名，用","隔开，如果全部获取，则填写"*"   
 	    sql_whereBy: "",  
 	    sql_orderBy: "order by id asc"  
 	}
@@ -98,7 +98,7 @@ layui.config({
 
 
 	//添加会员
-	$(".usersAdd_btn").click(function(){
+	/*$(".usersAdd_btn").click(function(){
 		var index = layui.layer.open({
 			title : "添加会员",
 			type : 2,
@@ -116,7 +116,7 @@ layui.config({
 			layui.layer.full(index);
 		})
 		layui.layer.full(index);
-	})
+	})*/
 
 	//批量删除
 	$(".batchDel").click(function(){
@@ -168,9 +168,9 @@ layui.config({
 	})
 
 	//操作
-	$("body").on("click",".users_edit",function(){  //编辑
+	/*$("body").on("click",".users_edit",function(){  //编辑
 		layer.alert('您点击了会员编辑按钮，由于是纯静态页面，所以暂时不存在编辑内容，后期会添加，敬请谅解。。。',{icon:6, title:'文章编辑'});
-	})
+	})*/
 
 	$("body").on("click",".users_del",function(){  //删除
 		var _this = $(this);
@@ -194,16 +194,20 @@ layui.config({
 			currData = usersData.concat().splice(curr*nums-nums, nums);
 			if(currData.length != 0){
 				for(var i=0;i<currData.length;i++){
+					var id 			=	currData[i].id,
+						username	= 	currData[i].username,
+						email  		= 	currData[i].email,
+						status		= 	Boolean(currData[i].status)?status="启用":status="禁用";
 					dataHtml += '<tr>'
-			    	+  '<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose"></td>'
-			    	+  '<td>'+currData[i].username+'</td>'
-			    	+  '<td>'+currData[i].email+'</td>'
+			    	+  '<td><input type="checkbox" value='+id+' name="id" lay-skin="primary" lay-filter="choose"></td>'
+			    	+  '<td>'+username+'</td>'
+			    	+  '<td>'+email+'</td>'
 			    	+  '<td>'+currData[i].userSex+'</td>'
 			    	+  '<td>'+currData[i].userGrade+'</td>'
-			    	+  '<td>'+currData[i].userStatus+'</td>'
+			    	+  '<td>'+status+'</td>'
 			    	+  '<td>'+currData[i].userEndTime+'</td>'
 			    	+  '<td>'
-					+    '<a class="layui-btn layui-btn-mini users_edit"><i class="iconfont icon-edit"></i> 编辑</a>'
+					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
 					+    '<a class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="'+data[i].usersId+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
 			    	+'</tr>';
@@ -228,3 +232,54 @@ layui.config({
 	}
         
 })
+
+var fun = {
+    	popCreate:function(){//添加
+    	var index = layui.layer.open({
+			title : "创建角色",
+			type : 2,
+			content : "create.asp?typ=0",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+      	},
+      	popUpdate:function(id){//添加
+    	var index = layui.layer.open({
+			title : "更新角色",
+			type : 2,
+			content : "create.asp?typ=1&id="+id+"",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+      	},
+      	_alertMes:function(){
+      	  layer.msg('添加成功', {btn: ['继续添加', '退出添加'],no: function(index, layero){},btn2: function(index, layero){window.parent.location.reload();parent.layer.closeAll();}});
+      	},
+      	_alertSuccess:function(){
+      	  layer.msg('修改成功',{
+      	    icon: 1,
+      	    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+      	  },function(){window.parent.location.reload();parent.layer.closeAll();});
+      	}
+
+}
