@@ -13,9 +13,13 @@ dim created_at:created_at=now()
 dim updated_at:updated_at=now()
 '添加
 if action="0" then
+	if checkAdminuser(username)<=0 then
 insertSql = "insert into {pre}admin([username],[email],[password],[status],[created_at],[updated_at]) values ('"&username&"','"&email&"','"&password&"','"&status&"','"&created_at&"','"&updated_at&"')"
 dbconn.db insertSql,"execute"
 echo "<script>$(function(){fun._alertMes()})</script>"
+	else
+	echo "<script>$(function(){fun._alertFail()})</script>"
+	end if
 end if
 '修改
 if action="1" then
@@ -37,6 +41,10 @@ getPar=0
 end if 	
 end function
 
+function checkAdminuser(uname)
+	Sql="select count(*) from {pre}admin where username='"&uname&"'"
+ 	checkAdminuser = dbconn.db(Sql,"execute")(0)
+end function
 
 %>
 

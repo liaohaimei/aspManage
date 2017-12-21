@@ -21,32 +21,32 @@ end if
   <div class="layui-form-item">
     <label class="layui-form-label">用户名</label>
     <div class="layui-input-block">
-      <input type="text" autocomplete="off"  class="layui-input" id="input-username" name="username" value="<%=username%>" placeholder="用户名">
+      <input type="text" autocomplete="off"  class="layui-input" id="input-username" name="username" value="<%=username%>" placeholder="用户名" lay-verify="username" onblur="checkAdminuser(this);">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">邮箱</label>
     <div class="layui-input-block">
-      <input type="text" autocomplete="off"  class="layui-input"  id="input-email" name="email" value="<%=email%>" placeholder="邮箱">
+      <input type="text" autocomplete="off"  class="layui-input"  id="input-email" name="email" value="<%=email%>" placeholder="邮箱"  lay-verify="email">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">密码</label>
     <div class="layui-input-block">
-      <input type="password" autocomplete="off"  class="layui-input"  id="input-password" name="password" value="" placeholder="密码">
+      <input type="password" autocomplete="off"  class="layui-input"  id="input-password" name="password" value="" placeholder="密码" lay-verify="pass">
     </div>
   </div>
    <div class="layui-form-item">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
     	<input class="layui-checkbox" type="hidden" name="status" value="1">
-    	<input type="checkbox" <%if status=1 then echo" checked" end if%>  lay-filter="switchStatus" lay-skin="switch" lay-text="启用|禁用" >
+    	<input type="checkbox" <%if status=1 or status="" then echo" checked" end if%>  lay-filter="switchStatus" lay-skin="switch" lay-text="启用|禁用" >
     </div>
   </div>
 
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit><%=btnName%></button>
+      <button class="layui-btn" lay-submit lay-filter="formDemo"><%=btnName%></button>
     </div>
   </div>
 </form>

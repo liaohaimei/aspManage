@@ -105,7 +105,7 @@ layui.config({
 			content : "create.asp",
 			success : function(layero, index){
 				setTimeout(function(){
-					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
 						tips: 3
 					});
 				},500)
@@ -197,14 +197,14 @@ layui.config({
 					var id 			=	currData[i].id,
 						username	= 	currData[i].username,
 						email  		= 	currData[i].email,
-						status		= 	Boolean(currData[i].status)?status="启用":status="禁用";
+						status		= 	Boolean(currData[i].status)?status="checked":status="";
 					dataHtml += '<tr>'
 			    	+  '<td><input type="checkbox" value='+id+' name="id" lay-skin="primary" lay-filter="choose"></td>'
 			    	+  '<td>'+username+'</td>'
 			    	+  '<td>'+email+'</td>'
 			    	+  '<td>'+currData[i].userSex+'</td>'
 			    	+  '<td>'+currData[i].userGrade+'</td>'
-			    	+  '<td>'+status+'</td>'
+			    	+  '<td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" lay-filter="isShow"'+status+'></td>'
 			    	+  '<td>'+currData[i].userEndTime+'</td>'
 			    	+  '<td>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
@@ -219,7 +219,7 @@ layui.config({
 		}
 
 		//分页
-		var nums = 13; //每页出现的数据量
+		var nums = 10; //每页出现的数据量
 		laypage({
 			cont : "page",
 			pages : Math.ceil(usersData.length/nums),
@@ -241,7 +241,7 @@ var fun = {
 			content : "create.asp?typ=0",
 			success : function(layero, index){
 				setTimeout(function(){
-					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
 						tips: 3
 					});
 				},500)
@@ -260,7 +260,7 @@ var fun = {
 			content : "create.asp?typ=1&id="+id+"",
 			success : function(layero, index){
 				setTimeout(function(){
-					layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
+					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
 						tips: 3
 					});
 				},500)
@@ -272,14 +272,29 @@ var fun = {
 		})
 		layui.layer.full(index);
       	},
-      	_alertMes:function(){
-      	  layer.msg('添加成功', {btn: ['继续添加', '退出添加'],no: function(index, layero){},btn2: function(index, layero){window.parent.location.reload();parent.layer.closeAll();}});
+      	_alertMes:function(){//添加成功
+	      	layer.msg('添加成功', {
+	      	  	btn: ['继续添加', '退出添加'],
+	      	  	yes: function(index, layero){
+	      	  		history.go(-1);
+	      	  	},
+	      	  	btn2: function(index, layero){
+	      	  		window.parent.location.reload();
+	      	  		parent.layer.closeAll();
+	      	  	}
+	      	},function(){window.parent.location.reload();parent.layer.closeAll();});
       	},
-      	_alertSuccess:function(){
-      	  layer.msg('修改成功',{
-      	    icon: 1,
-      	    time: 2000 //2秒关闭（如果不配置，默认是3秒）
-      	  },function(){window.parent.location.reload();parent.layer.closeAll();});
+      	_alertSuccess:function(){//修改成功
+			layer.msg('修改成功',{
+				icon: 1,
+				time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			},function(){window.parent.location.reload();parent.layer.closeAll();});
+      	},
+      	_alertFail:function(){//修改成功
+			layer.msg('添加失败',{
+				icon: 2,
+				time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			},function(){window.parent.location.reload();parent.layer.closeAll();});
       	}
 
 }
