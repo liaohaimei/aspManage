@@ -291,7 +291,7 @@ var fun = {
 			},function(){window.parent.location.reload();parent.layer.closeAll();});
       	},
       	_alertFail:function(){//修改成功
-			layer.msg('添加失败',{
+			layer.msg('操作失败',{
 				icon: 2,
 				time: 2000 //2秒关闭（如果不配置，默认是3秒）
 			},function(){window.parent.location.reload();parent.layer.closeAll();});

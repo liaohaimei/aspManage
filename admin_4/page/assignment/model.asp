@@ -14,23 +14,27 @@ dim updated_at:updated_at=now()
 '添加
 if action="0" then
 	if checkAdminuser(username)<=0 then
-insertSql = "insert into {pre}admin([username],[email],[password],[status],[created_at],[updated_at]) values ('"&username&"','"&email&"','"&password&"','"&status&"','"&created_at&"','"&updated_at&"')"
-dbconn.db insertSql,"execute"
-echo "<script>$(function(){fun._alertMes()})</script>"
+	insertSql = "insert into {pre}admin([username],[email],[password],[status],[created_at],[updated_at]) values ('"&username&"','"&email&"','"&password&"','"&status&"','"&created_at&"','"&updated_at&"')"
+	dbconn.db insertSql,"execute"
+	echo "<script>$(function(){fun._alertMes()})</script>"
 	else
 	echo "<script>$(function(){fun._alertFail()})</script>"
 	end if
 end if
 '修改
 if action="1" then
-dim id : id = getForm("id", "get")
-if getForm("password","post")<>"" then
-pwd=",password='"&password&"'"
-end if
-sqlstr="username='"&username&"',email='"&email&"'"&pwd&",status='"&status&"',updated_at='"&updated_at&"'"
-updateSql = "update {pre}admin  set "&sqlstr&" where ID="&id
-dbconn.db updateSql,"execute"
-echo "<script>$(function(){fun._alertSuccess()})</script>"
+	if checkAdminuser(username)<=0 then
+	dim id : id = getForm("id", "get")
+	if getForm("password","post")<>"" then
+	pwd=",[password]='"&password&"'"
+	end if
+	sqlstr="[username]='"&username&"',[email]='"&email&"'"&pwd&",[status]='"&status&"',[updated_at]='"&updated_at&"'"
+	updateSql = "update {pre}admin  set "&sqlstr&" where ID="&id
+	dbconn.db updateSql,"execute"
+	echo "<script>$(function(){fun._alertSuccess()})</script>"
+	else
+	echo "<script>$(function(){fun._alertFail()})</script>"
+	end if
 end if
 
 
