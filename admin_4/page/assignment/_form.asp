@@ -1,10 +1,12 @@
 
 <%
 btnName="新增"
+sty="layui-hide"
 typ=getForm("typ","get")
 id=getForm("id","get")              '当前ID
 if id<>"" then
 btnName="更新"
+sty=""
 sql = "select * from {pre}admin where ID = "&id
 set rsObj = dbconn.db(sql,"records1")
 if not rsObj.eof then
@@ -31,12 +33,21 @@ end if
           <input type="text" autocomplete="off"  class="layui-input"  id="input-email" name="email" value="<%=email%>" placeholder="邮箱"  lay-verify="email">
         </div>
       </div>
+
+      <div class="layui-form-item <%=sty%>">
+        <label class="layui-form-label">修改密码</label>
+        <div class="layui-input-block">
+          <input type="radio" name="editpwd" value="0" title="不修改"  data-v="" checked>
+          <input type="radio" name="editpwd" value="1" title="修改" data-v="pass">
+        </div>
+      </div>
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-          <input type="password" autocomplete="off"  class="layui-input"  id="input-password" name="password" value="" placeholder="密码" >
+          <input type="password" autocomplete="off"  class="layui-input"  id="input-password" name="password" value="" placeholder="密码" <%if id="" then%> lay-verify="pass" <%end if%>>
         </div>
       </div>
+
        <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block">

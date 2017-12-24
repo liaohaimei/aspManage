@@ -148,7 +148,7 @@ layui.config({
 
     //全选
 	form.on('checkbox(allChoose)', function(data){
-		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
+		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="status"])');
 		child.each(function(index, item){
 			item.checked = data.elem.checked;
 		});
@@ -223,6 +223,7 @@ layui.config({
 		laypage({
 			cont : "page",
 			pages : Math.ceil(usersData.length/nums),
+			skip: true,
 			jump : function(obj){
 				$(".users_content").html(renderDate(usersData,obj.curr));
 				$('.users_list thead input[type="checkbox"]').prop("checked",false);

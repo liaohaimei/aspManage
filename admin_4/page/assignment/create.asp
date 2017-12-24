@@ -16,6 +16,7 @@
 <script src="../../../assets/layer/layer.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script>
+
 function checkAdminuser(el){
   var value = $(el).val();
   var url = "checkadminuser.asp",
