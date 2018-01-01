@@ -95,33 +95,10 @@ layui.config({
 	})
 
 
-
-
-	//添加会员
-	/*$(".usersAdd_btn").click(function(){
-		var index = layui.layer.open({
-			title : "添加会员",
-			type : 2,
-			content : "create.asp",
-			success : function(layero, index){
-				setTimeout(function(){
-					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
-						tips: 3
-					});
-				},500)
-			}
-		})
-		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
-		$(window).resize(function(){
-			layui.layer.full(index);
-		})
-		layui.layer.full(index);
-	})*/
-
 	//批量删除
 	$(".batchDel").click(function(){
-		var $checkbox = $('.users_list tbody input[type="checkbox"][name="checked"]');
-		var $checked = $('.users_list tbody input[type="checkbox"][name="checked"]:checked');
+		var $checkbox = $('.users_list tbody input[type="checkbox"][name="id"]');
+		var $checked = $('.users_list tbody input[type="checkbox"][name="id"]:checked');
 		if($checkbox.is(":checked")){
 			layer.confirm('确定删除选中的信息？',{icon:3, title:'提示信息'},function(index){
 				var index = layer.msg('删除中，请稍候',{icon: 16,time:false,shade:0.8});
@@ -129,7 +106,28 @@ layui.config({
 	            	//删除数据
 	            	for(var j=0;j<$checked.length;j++){
 	            		for(var i=0;i<usersData.length;i++){
-							if(usersData[i].newsId == $checked.eq(j).parents("tr").find(".news_del").attr("data-id")){
+							if(usersData[i].id == $checked.eq(j).parents("tr").attr("data-id")){
+	            			var url = "deladminuser.asp",
+    							id = usersData[i].id,
+    						    par = {delid:id};
+    						    $.ajax({
+    						      url : url,
+    						      data : par,
+    						      type : "GET",
+    						      success : function(data){
+    						        if(data==1){
+    						        	layer.msg('删除成功',{
+    						        	icon: 1,
+    						        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+    						        	});
+    						        }else{
+    						        	layer.msg('删除失败',{
+    						        	icon: 2,
+    						        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+    						        	});	
+    						        }
+    						      }    
+    						    });
 								usersData.splice(i,1);
 								usersList(usersData);
 							}
@@ -168,16 +166,35 @@ layui.config({
 	})
 
 	//操作
-	/*$("body").on("click",".users_edit",function(){  //编辑
-		layer.alert('您点击了会员编辑按钮，由于是纯静态页面，所以暂时不存在编辑内容，后期会添加，敬请谅解。。。',{icon:6, title:'文章编辑'});
-	})*/
 
-	$("body").on("click",".users_del",function(){  //删除
+	$("body").on("click",".del-admin",function(){  //删除
 		var _this = $(this);
 		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
-			//_this.parents("tr").remove();
+
+			var url = "deladminuser.asp",
+				id =_this.attr("data-id"),
+			    par = {delid:id};
+			    $.ajax({
+			      url : url,
+			      data : par,
+			      type : "GET",
+			      success : function(data){
+			        if(data==1){
+			        	layer.msg('删除成功',{
+			        	icon: 1,
+			        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			        	});
+			        }else{
+			        	layer.msg('删除失败',{
+			        	icon: 2,
+			        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			        	});	
+			        }
+			      }    
+			    });
+			_this.parents("tr").remove();
 			for(var i=0;i<usersData.length;i++){
-				if(usersData[i].usersId == _this.attr("data-id")){
+				if(usersData[i].id == _this.attr("data-id")){
 					usersData.splice(i,1);
 					usersList(usersData);
 				}
@@ -185,6 +202,33 @@ layui.config({
 			layer.close(index);
 		});
 	})
+
+	 //监听指定开关
+	  form.on('switch(isShow)', function(data){
+	  	var val = this.checked ? 1 : 0;
+	    var url = "updateadminstatus.asp",
+			id = $(this).parents("tr").attr("data-id"),
+		    par = {updateid:id,str:val};
+		    $.ajax({
+		      url : url,
+		      data : par,
+		      type : "GET",
+		      success : function(data){
+		        if(data==1){
+		        	layer.msg('修改成功',{
+		        	icon: 1,
+		        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+		        	});
+		        }else{
+		        	layer.msg('修改失败',{
+		        	icon: 2,
+		        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+		        	});	
+		        }
+		      }    
+		    });
+	    layer.tips('温馨提示：启用/禁用当前用户', data.othis)
+	  });
 
 	function usersList(){
 
@@ -198,7 +242,7 @@ layui.config({
 						username	= 	currData[i].username,
 						email  		= 	currData[i].email,
 						status		= 	Boolean(currData[i].status)?status="checked":status="";
-					dataHtml += '<tr>'
+					dataHtml += '<tr data-id="'+id+'">'
 			    	+  '<td><input type="checkbox" value='+id+' name="id" lay-skin="primary" lay-filter="choose"></td>'
 			    	+  '<td>'+username+'</td>'
 			    	+  '<td>'+email+'</td>'
@@ -208,7 +252,7 @@ layui.config({
 			    	+  '<td>'+currData[i].userEndTime+'</td>'
 			    	+  '<td>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
-					+    '<a class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="'+data[i].usersId+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+					+    '<a class="layui-btn layui-btn-danger layui-btn-mini del-admin" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
 			    	+'</tr>';
 				}
@@ -231,6 +275,9 @@ layui.config({
 			}
 		})
 	}
+
+
+
         
 })
 
@@ -272,6 +319,11 @@ var fun = {
 			layui.layer.full(index);
 		})
 		layui.layer.full(index);
+      	},
+      	updateStatus:function(el,id){//删除当前一条数据
+      		var _this = $(el);
+      		console.log(_this.val());
+      		
       	},
       	_alertMes:function(){//添加成功
 	      	layer.msg('添加成功', {

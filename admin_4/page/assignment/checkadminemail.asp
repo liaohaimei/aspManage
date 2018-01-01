@@ -2,15 +2,15 @@
 <%
 str = getForm("str", "get")
 updateid = getForm("updateid", "get")
-echo checkAdminuser(str,updateid)
-function checkAdminuser(str,updateid)
+echo checkAdminemail(str)
+function checkAdminemail(str)
 	where = " where 1=1"
-	where = where&" and username='"&str&"'"
+	where = where&" and email='"&str&"'"
 	if varNull(updateid)=true then
 		where = where&" and id<>"&updateid&""
 	end if
 	Sql="select count(*) from {pre}admin "&where&""
- 	checkAdminuser = dbconn.db(Sql,"execute")(0)
+ 	checkAdminemail = dbconn.db(Sql,"execute")(0)
 end function
 
 %>

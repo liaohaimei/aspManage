@@ -18,19 +18,20 @@ end if
 rsObj.close : set rsObj=nothing
 end if
 %>
+<input type="hidden" id="updateid" value="<%=id%>">
 <div class="layui-layout-admin site-demo">  
   <div class="layui-main">
     <form class="layui-form"  action="model.asp?action=<%=typ%>&id=<%=id%>" method="post">
       <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-          <input type="text" autocomplete="off"  class="layui-input" id="input-username" name="username" value="<%=username%>" placeholder="用户名" lay-verify="username" onblur="checkAdminuser(this);">
+          <input type="text" autocomplete="off"  class="layui-input" id="input-username" name="username" value="<%=username%>" placeholder="用户名" lay-verify="username" onblur="fun.checkAdminuser(this);">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-          <input type="text" autocomplete="off"  class="layui-input"  id="input-email" name="email" value="<%=email%>" placeholder="邮箱"  lay-verify="email">
+          <input type="text" autocomplete="off"  class="layui-input"  id="input-email" name="email" value="<%=email%>" placeholder="邮箱"  lay-verify="email" onblur="fun.checkAdminemail(this);">
         </div>
       </div>
 

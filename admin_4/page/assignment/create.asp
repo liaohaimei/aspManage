@@ -16,26 +16,48 @@
 <script src="../../../assets/layer/layer.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script>
+var fun = {
+  checkAdminuser:function(el){//检查用户名是否存在
+    var updateid = $("#updateid").val();
+    var value = $(el).val();
+    var url = "checkadminuser.asp",
+        par = {str:value,updateid:updateid};
+        $.ajax({
+          url : url,
+          type : "GET",
+          data : par,
+          success : function(data){
+            if(data>=1){
+              layer.msg('该用户名已存在',{
+              icon: 2,
+              time: 2000 //2秒关闭（如果不配置，默认是3秒）
+              });
+            }
+          }    
+        });  
+  },
+  checkAdminemail:function(el){//检查用户邮箱是否存在
+    var updateid = $("#updateid").val();
+    var value = $(el).val();
+    var url = "checkadminemail.asp",
+        par = {str:value,updateid:updateid};
+        $.ajax({
+          url : url,
+          type : "GET",
+          data : par,
+          success : function(data){
+            if(data>=1){
+              layer.msg('该邮箱已存在',{
+              icon: 2,
+              time: 2000 //2秒关闭（如果不配置，默认是3秒）
+              });
+            }
+          }    
+        });  
+  }
 
-function checkAdminuser(el){
-  var value = $(el).val();
-  var url = "checkadminuser.asp",
-      par = {uname:value};
-      $.ajax({
-        url : url,
-        type : "GET",
-        data : par,
-        success : function(data){
-          console.log(data);
-          if(data>=1){
-            layer.msg('该用户名已存在',{
-            icon: 2,
-            time: 2000 //2秒关闭（如果不配置，默认是3秒）
-            });
-          }
-        }    
-      });
-}  
+}
+ 
 //Demo
 layui.use('form', function(){
   var form = layui.form();
