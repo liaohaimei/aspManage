@@ -1,4 +1,4 @@
-<!--#include file="../../admin_inc.asp"-->
+<!--#include file="../../../admin_inc.asp"-->
 <%
 str = getForm("str", "get")
 updateid = getForm("updateid", "get")

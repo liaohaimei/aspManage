@@ -1,4 +1,4 @@
-<!--#include file="../../admin_inc.asp"-->
+<!--#include file="../../../admin_inc.asp"-->
 <%
 delid = getForm("delid", "get")
 echo delAdminuser(delid)

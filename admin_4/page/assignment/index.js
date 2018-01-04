@@ -7,7 +7,7 @@ layui.config({
 		$ = layui.jquery;
 
 	//加载页面数据
-	var url = "index_json.asp"  
+	var url = "data/index_json.asp"  
 	var relations = {  
 	    sql_class: "wspcms_admin", //表名  
 	    sql_top: "",  //取数据总条数 top 10  
@@ -74,10 +74,7 @@ layui.config({
 		            		if(usersStr.userSex.indexOf(selectStr) > -1){
 			            		usersStr["userSex"] = changeStr(usersStr.userSex);
 		            		}
-		            		//会员等级
-		            		if(usersStr.userGrade.indexOf(selectStr) > -1){
-			            		usersStr["userGrade"] = changeStr(usersStr.userGrade);
-		            		}*/
+		            		*/
 		            		if(usersStr.username.indexOf(selectStr)>-1 || usersStr.email.indexOf(selectStr)>-1 ){
 		            			userArray.push(usersStr);
 		            		}
@@ -107,7 +104,7 @@ layui.config({
 	            	for(var j=0;j<$checked.length;j++){
 	            		for(var i=0;i<usersData.length;i++){
 							if(usersData[i].id == $checked.eq(j).parents("tr").attr("data-id")){
-	            			var url = "deladminuser.asp",
+	            			var url = "ajax/deladminuser.asp",
     							id = usersData[i].id,
     						    par = {delid:id};
     						    $.ajax({
@@ -167,11 +164,11 @@ layui.config({
 
 	//操作
 
-	$("body").on("click",".del-admin",function(){  //删除
+	$("body").on("click",".del-data",function(){  //删除
 		var _this = $(this);
 		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
 
-			var url = "deladminuser.asp",
+			var url = "ajax/deladminuser.asp",
 				id =_this.attr("data-id"),
 			    par = {delid:id};
 			    $.ajax({
@@ -206,7 +203,7 @@ layui.config({
 	 //监听指定开关
 	  form.on('switch(isShow)', function(data){
 	  	var val = this.checked ? 1 : 0;
-	    var url = "updateadminstatus.asp",
+	    var url = "ajax/updateadminstatus.asp",
 			id = $(this).parents("tr").attr("data-id"),
 		    par = {updateid:id,str:val};
 		    $.ajax({
@@ -217,17 +214,17 @@ layui.config({
 		        if(data==1){
 		        	layer.msg('修改成功',{
 		        	icon: 1,
-		        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+		        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
 		        	});
 		        }else{
 		        	layer.msg('修改失败',{
 		        	icon: 2,
-		        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+		        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
 		        	});	
 		        }
 		      }    
 		    });
-	    layer.tips('温馨提示：启用/禁用当前用户', data.othis)
+	    //layer.tips('温馨提示：启用/禁用当前用户', data.othis)
 	  });
 
 	function usersList(){
@@ -252,7 +249,7 @@ layui.config({
 			    	+  '<td>'+currData[i].userEndTime+'</td>'
 			    	+  '<td>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
-					+    '<a class="layui-btn layui-btn-danger layui-btn-mini del-admin" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+					+    '<a class="layui-btn layui-btn-danger layui-btn-mini del-data" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
 			    	+'</tr>';
 				}
@@ -286,7 +283,7 @@ var fun = {
     	var index = layui.layer.open({
 			title : "创建角色",
 			type : 2,
-			content : "create.asp?typ=0",
+			content : "create.asp",
 			success : function(layero, index){
 				setTimeout(function(){
 					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -305,7 +302,7 @@ var fun = {
     	var index = layui.layer.open({
 			title : "更新角色",
 			type : 2,
-			content : "create.asp?typ=1&id="+id+"",
+			content : "update.asp?id="+id+"",
 			success : function(layero, index){
 				setTimeout(function(){
 					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {

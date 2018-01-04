@@ -1,5 +1,5 @@
-<!--#include file="../../admin_inc.asp"-->
-<!--#include file="../../../inc/json.asp"-->
+<!--#include file="../../../admin_inc.asp"-->
+<!--#include file="../../../../inc/json.asp"-->
 <%
 'response.ContentType="text/json"
 dim j
