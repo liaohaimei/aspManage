@@ -104,7 +104,7 @@ layui.config({
 	            	for(var j=0;j<$checked.length;j++){
 	            		for(var i=0;i<usersData.length;i++){
 							if(usersData[i].id == $checked.eq(j).parents("tr").attr("data-id")){
-	            			var url = "ajax/deladminuser.asp",
+	            			var url = "delete.asp",
     							id = usersData[i].id,
     						    par = {delid:id};
     						    $.ajax({
@@ -168,7 +168,7 @@ layui.config({
 		var _this = $(this);
 		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
 
-			var url = "ajax/deladminuser.asp",
+			var url = "delete.asp",
 				id =_this.attr("data-id"),
 			    par = {delid:id};
 			    $.ajax({
