@@ -1,7 +1,7 @@
 <input type="hidden" id="updateid" value="<%=id%>">
 <div class="layui-layout-admin site-demo">  
   <div class="layui-main">
-    <form class="layui-form"  action="model.asp?action=<%=typ%>&id=<%=id%>" method="post">
+    <form class="layui-form"  action="models/model.asp?action=<%=typ%>&id=<%=id%>" method="post">
       <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">

@@ -27,7 +27,7 @@ end if
 rsObj.close : set rsObj=nothing
 end if
 %>
-<!--#include file="_form.asp"-->
+<!--#include file="models/_form.asp"-->
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 layui.config({
-	base : "js/"
+	//base : "js/"
 }).use(['form','layer','jquery','laypage'],function(){
 	var form = layui.form(),
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
@@ -9,9 +9,9 @@ layui.config({
 	//加载页面数据
 	var url = "data/index_json.asp"  
 	var relations = {  
-	    sql_class: "wspcms_admin", //表名  
+	    sql_class: "wspcms_auth_item", //表名  
 	    sql_top: "",  //取数据总条数 top 10  
-	    sql_colums: "id,username,email,status", //列名，用","隔开，如果全部获取，则填写"*"   
+	    sql_colums: "id,name,updated_at", //列名，用","隔开，如果全部获取，则填写"*"   
 	    sql_whereBy: "",  
 	    sql_orderBy: "order by id asc"  
 	}
@@ -19,9 +19,9 @@ layui.config({
 	$.post(url,relations, function(data){
 		data=JSON.parse(data);
 		usersData = data.rows;
-		if(window.sessionStorage.getItem("addUser")){
-			var addUser = window.sessionStorage.getItem("addUser");
-			usersData = JSON.parse(addUser).concat(usersData);
+		if(window.sessionStorage.getItem("sname")){
+			var sname = window.sessionStorage.getItem("sname");
+			usersData = JSON.parse(sname).concat(usersData);
 		}
 		//执行加载数据的方法
 		usersList();
@@ -39,9 +39,9 @@ layui.config({
 					data : relations,
 					dataType : "json",
 					success : function(data){
-						if(window.sessionStorage.getItem("addUser")){
-							var addUser = window.sessionStorage.getItem("addUser");
-							usersData = JSON.parse(addUser).concat(data);
+						if(window.sessionStorage.getItem("sname")){
+							var sname = window.sessionStorage.getItem("sname");
+							usersData = JSON.parse(sname).concat(data);
 						}else{
 							usersData = data.rows;
 						}
@@ -63,19 +63,10 @@ layui.config({
 		            			}
 		            		}
 		            		//用户名
-		            		if(usersStr.username.indexOf(selectStr) > -1){
-			            		usersStr["username"] = changeStr(usersStr.username);
+		            		if(usersStr.name.indexOf(selectStr) > -1){
+			            		usersStr["name"] = changeStr(usersStr.name);
 		            		}
-		            		//用户邮箱
-		            		if(usersStr.email.indexOf(selectStr) > -1){
-			            		usersStr["email"] = changeStr(usersStr.email);
-		            		}
-		            		/*//性别
-		            		if(usersStr.userSex.indexOf(selectStr) > -1){
-			            		usersStr["userSex"] = changeStr(usersStr.userSex);
-		            		}
-		            		*/
-		            		if(usersStr.username.indexOf(selectStr)>-1 || usersStr.email.indexOf(selectStr)>-1 ){
+		            		if(usersStr.name.indexOf(selectStr)>-1){
 		            			userArray.push(usersStr);
 		            		}
 		            	}
@@ -236,17 +227,16 @@ layui.config({
 			if(currData.length != 0){
 				for(var i=0;i<currData.length;i++){
 					var id 			=	currData[i].id,
-						username	= 	currData[i].username,
-						email  		= 	currData[i].email,
-						status		= 	Boolean(currData[i].status)?status="checked":status="";
+						name		= 	currData[i].name,
+						update  	= 	currData[i].updated_at;
 					dataHtml += '<tr data-id="'+id+'">'
-			    	+  '<td><input type="checkbox" value='+id+' name="id" lay-skin="primary" lay-filter="choose"></td>'
-			    	+  '<td>'+username+'</td>'
-			    	+  '<td>'+email+'</td>'
-			    	+  '<td>'+currData[i].userSex+'</td>'
-			    	+  '<td>'+currData[i].userGrade+'</td>'
-			    	+  '<td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" lay-filter="isShow"'+status+'></td>'
-			    	+  '<td>'+currData[i].userEndTime+'</td>'
+			    	+  '<td><input type="checkbox" value="'+id+'" name="id" lay-skin="primary" lay-filter="choose"></td>'
+			    	+  '<td>'+name+'</td>'
+			    	+  '<td></td>'
+			    	+  '<td></td>'
+			    	+  '<td></td>'
+			    	+  '<td></td>'
+			    	+  '<td>'+update+'</td>'
 			    	+  '<td>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
 					+    '<a class="layui-btn layui-btn-danger layui-btn-mini del-data" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'

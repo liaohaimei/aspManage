@@ -46,12 +46,12 @@
         <thead>
         <tr>
           <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-          <th>登录名</th>
-          <th>邮箱</th>
-          <th>性别</th>
-          <th>会员等级</th>
-          <th>会员状态</th>
-          <th>最后登录时间</th>
+          <th>路由</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>更新时间</th>
           <th>操作</th>
         </tr> 
         </thead>
