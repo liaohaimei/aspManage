@@ -1,1 +1,1 @@
-<!--#include file="ajax/deladminuser.asp"-->
+<!--#include file="ajax/deldata.asp"-->

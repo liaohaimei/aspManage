@@ -106,12 +106,12 @@ layui.config({
     						        if(data==1){
     						        	layer.msg('删除成功',{
     						        	icon: 1,
-    						        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+    						        	time: 1000 //1秒关闭（如果不配置，默认是3秒）
     						        	});
     						        }else{
     						        	layer.msg('删除失败',{
     						        	icon: 2,
-    						        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+    						        	time: 1000 //1秒关闭（如果不配置，默认是3秒）
     						        	});	
     						        }
     						      }    
@@ -170,12 +170,12 @@ layui.config({
 			        if(data==1){
 			        	layer.msg('删除成功',{
 			        	icon: 1,
-			        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			        	time: 2000 //1秒关闭（如果不配置，默认是3秒）
 			        	});
 			        }else{
 			        	layer.msg('删除失败',{
 			        	icon: 2,
-			        	time: 2000 //2秒关闭（如果不配置，默认是3秒）
+			        	time: 2000 //1秒关闭（如果不配置，默认是3秒）
 			        	});	
 			        }
 			      }    
@@ -205,12 +205,12 @@ layui.config({
 		        if(data==1){
 		        	layer.msg('修改成功',{
 		        	icon: 1,
-		        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+		        	time: 1000 //1秒关闭（如果不配置，默认是3秒）
 		        	});
 		        }else{
 		        	layer.msg('修改失败',{
 		        	icon: 2,
-		        	time: 1000 //2秒关闭（如果不配置，默认是3秒）
+		        	time: 1000 //1秒关闭（如果不配置，默认是3秒）
 		        	});	
 		        }
 		      }    
@@ -322,13 +322,13 @@ var fun = {
       	_alertSuccess:function(){//修改成功
 			layer.msg('修改成功',{
 				icon: 1,
-				time: 2000 //2秒关闭（如果不配置，默认是3秒）
+				time: 2000 //1秒关闭（如果不配置，默认是3秒）
 			},function(){window.parent.location.reload();parent.layer.closeAll();});
       	},
       	_alertFail:function(){//修改成功
 			layer.msg('操作失败',{
 				icon: 2,
-				time: 2000 //2秒关闭（如果不配置，默认是3秒）
+				time: 2000 //1秒关闭（如果不配置，默认是3秒）
 			},function(){window.parent.location.reload();parent.layer.closeAll();});
       	}
 
