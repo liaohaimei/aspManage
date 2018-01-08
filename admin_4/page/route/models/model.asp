@@ -22,17 +22,26 @@ end if
 '修改
 if action="1" then
 	dim id : id = getForm("id", "get")
+	if editCheckName(name,id)<=0 then
 	sqlstr="[name]='"&name&"',[type]='"&type2&"',[updated_at]='"&updated_at&"'"
 	updateSql = "update {pre}auth_item  set "&sqlstr&" where ID="&id
 	dbconn.db updateSql,"execute"
 	echo "<script>$(function(){fun._alertSuccess()})</script>"
+	else
+	echo "<script>$(function(){fun._alertFail()})</script>"
+	end if
 
 end if
 
-'添加时检测用户名
+'添加时检测名称
 function checkName(str)
 	Sql="select count(*) from {pre}auth_item where name='"&str&"'"
  	checkName = dbconn.db(Sql,"execute")(0)
+end function
+'修改时检测名称
+function editCheckName(str,id)
+	Sql="select count(*) from {pre}auth_item where name='"&str&"' and id<>"&id&""
+ 	editCheckName = dbconn.db(Sql,"execute")(0)
 end function
 %>
 

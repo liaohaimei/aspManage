@@ -15,13 +15,13 @@ layui.config({
 	    sql_whereBy: "",  
 	    sql_orderBy: "order by id asc"  
 	}
-	var usersData = '';
+	var Datas = '';
 	$.post(url,relations, function(data){
 		data=JSON.parse(data);
-		usersData = data.rows;
+		Datas = data.rows;
 		if(window.sessionStorage.getItem("susername")){
 			var susername = window.sessionStorage.getItem("susername");
-			usersData = JSON.parse(susername).concat(usersData);
+			Datas = JSON.parse(susername).concat(Datas);
 		}
 		//执行加载数据的方法
 		usersList();
@@ -41,12 +41,12 @@ layui.config({
 					success : function(data){
 						if(window.sessionStorage.getItem("susername")){
 							var susername = window.sessionStorage.getItem("susername");
-							usersData = JSON.parse(susername).concat(data);
+							Datas = JSON.parse(susername).concat(data);
 						}else{
-							usersData = data.rows;
+							Datas = data.rows;
 						}
-						for(var i=0;i<usersData.length;i++){
-							var usersStr = usersData[i];
+						for(var i=0;i<Datas.length;i++){
+							var usersStr = Datas[i];
 							var selectStr = $(".search_input").val();
 		            		function changeStr(data){
 		            			var dataStr = '';
@@ -79,8 +79,8 @@ layui.config({
 		            			userArray.push(usersStr);
 		            		}
 		            	}
-		            	usersData = userArray;
-		            	usersList(usersData);
+		            	Datas = userArray;
+		            	usersList(Datas);
 					}
 				})
             	
@@ -102,10 +102,10 @@ layui.config({
 	            setTimeout(function(){
 	            	//删除数据
 	            	for(var j=0;j<$checked.length;j++){
-	            		for(var i=0;i<usersData.length;i++){
-							if(usersData[i].id == $checked.eq(j).parents("tr").attr("data-id")){
+	            		for(var i=0;i<Datas.length;i++){
+							if(Datas[i].id == $checked.eq(j).parents("tr").attr("data-id")){
 	            			var url = "delete.asp",
-    							id = usersData[i].id,
+    							id = Datas[i].id,
     						    par = {delid:id};
     						    $.ajax({
     						      url : url,
@@ -125,8 +125,8 @@ layui.config({
     						        }
     						      }    
     						    });
-								usersData.splice(i,1);
-								usersList(usersData);
+								Datas.splice(i,1);
+								usersList(Datas);
 							}
 						}
 	            	}
@@ -190,10 +190,10 @@ layui.config({
 			      }    
 			    });
 			_this.parents("tr").remove();
-			for(var i=0;i<usersData.length;i++){
-				if(usersData[i].id == _this.attr("data-id")){
-					usersData.splice(i,1);
-					usersList(usersData);
+			for(var i=0;i<Datas.length;i++){
+				if(Datas[i].id == _this.attr("data-id")){
+					Datas.splice(i,1);
+					usersList(Datas);
 				}
 			}
 			layer.close(index);
@@ -232,7 +232,7 @@ layui.config({
 		//渲染数据
 		function renderDate(data,curr){
 			var dataHtml = '';
-			currData = usersData.concat().splice(curr*nums-nums, nums);
+			currData = Datas.concat().splice(curr*nums-nums, nums);
 			if(currData.length != 0){
 				for(var i=0;i<currData.length;i++){
 					var id 			=	currData[i].id,
@@ -263,10 +263,10 @@ layui.config({
 		var nums = 10; //每页出现的数据量
 		laypage({
 			cont : "page",
-			pages : Math.ceil(usersData.length/nums),
+			pages : Math.ceil(Datas.length/nums),
 			skip: true,
 			jump : function(obj){
-				$(".users_content").html(renderDate(usersData,obj.curr));
+				$(".users_content").html(renderDate(Datas,obj.curr));
 				$('.users_list thead input[type="checkbox"]').prop("checked",false);
 		    	form.render();
 			}

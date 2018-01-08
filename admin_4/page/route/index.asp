@@ -37,20 +37,12 @@
         <col width="50">
         <col>
         <col width="18%">
-        <col width="8%">
-        <col width="12%">
-        <col width="12%">
-        <col width="18%">
         <col width="15%">
         </colgroup>
         <thead>
         <tr>
           <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
           <th>路由</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
           <th>更新时间</th>
           <th>操作</th>
         </tr> 
