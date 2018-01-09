@@ -40,8 +40,8 @@
         <thead>
         <tr>
           <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-          <th class="text-left">路由</th>
-          <th class="text-left">更新时间</th>
+          <th class="text-left">名称</th>
+          <th>描述</th>
           <th>操作</th>
         </tr> 
         </thead>

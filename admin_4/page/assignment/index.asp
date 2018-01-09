@@ -11,7 +11,7 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
-    <link rel="stylesheet" href="../../css/common.css" media="all" />
+  <link rel="stylesheet" href="../../css/common.css" media="all" />
   <link rel="stylesheet" href="../../css/user.css" media="all" />
 </head>
 <body class="childrenBody">
@@ -23,7 +23,7 @@
         <a class="layui-btn search_btn">查询</a>
     </div>
     <div class="layui-inline">
-      <a class="layui-btn layui-btn-normal " onclick="fun.popCreate()">添加用户</a>
+      <a class="layui-btn layui-btn-normal " onclick="fun.popCreate()">添加</a>
     </div>
     <div class="layui-inline">
       <a class="layui-btn layui-btn-danger batchDel">批量删除</a>

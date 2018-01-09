@@ -5,7 +5,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">新路由</label>
         <div class="layui-input-block">
-          <input id="inp-route" name="name" value="<%=name%>" type="text" class="layui-input" placeholder="新路由">
+          <input id="inp-name" name="name" value="<%=name%>" type="text" class="layui-input" placeholder="新路由">
         </div>
       </div>
       <div class="layui-form-item">

@@ -40,13 +40,6 @@ if action="1" then
 end if
 
 
-function getPar(id)
-getPar=getForm(id,"get")
-if varNull(getPar)=false then
-getPar=0
-end if 	
-end function
-
 '添加时检测用户名
 function checkAdminuser(str)
 	Sql="select count(*) from {pre}admin where username='"&str&"'"
