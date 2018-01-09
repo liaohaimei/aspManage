@@ -231,8 +231,8 @@ layui.config({
 						update  	= 	currData[i].updated_at;
 					dataHtml += '<tr data-id="'+id+'">'
 			    	+  '<td><input type="checkbox" value="'+id+'" name="id" lay-skin="primary" lay-filter="choose"></td>'
-			    	+  '<td>'+name+'</td>'
-			    	+  '<td>'+update+'</td>'
+			    	+  '<td class="text-left">'+name+'</td>'
+			    	+  '<td class="text-left">'+update+'</td>'
 			    	+  '<td>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
 			        +  '</td>'

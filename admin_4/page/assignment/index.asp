@@ -11,6 +11,7 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="../../css/common.css" media="all" />
   <link rel="stylesheet" href="../../css/user.css" media="all" />
 </head>
 <body class="childrenBody">
@@ -43,8 +44,8 @@
         <thead>
         <tr>
           <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-          <th>登录名</th>
-          <th>邮箱</th>
+          <th class="text-left">登录名</th>
+          <th class="text-left">邮箱</th>
           <th>性别</th>
           <th>会员等级</th>
           <th>会员状态</th>

@@ -11,6 +11,7 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+  <link rel="stylesheet" href="../../css/common.css" media="all" />
   <link rel="stylesheet" href="../../css/user.css" media="all" />
 </head>
 <body class="childrenBody">
@@ -39,8 +40,8 @@
         <thead>
         <tr>
           <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
-          <th>路由</th>
-          <th>更新时间</th>
+          <th class="text-left">路由</th>
+          <th class="text-left">更新时间</th>
           <th>操作</th>
         </tr> 
         </thead>

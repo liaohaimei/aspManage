@@ -241,8 +241,8 @@ layui.config({
 						status		= 	Boolean(currData[i].status)?status="checked":status="";
 					dataHtml += '<tr data-id="'+id+'">'
 			    	+  '<td><input type="checkbox" value="'+id+'" name="id" lay-skin="primary" lay-filter="choose"></td>'
-			    	+  '<td>'+username+'</td>'
-			    	+  '<td>'+email+'</td>'
+			    	+  '<td class="text-left">'+username+'</td>'
+			    	+  '<td class="text-left">'+email+'</td>'
 			    	+  '<td>'+currData[i].userSex+'</td>'
 			    	+  '<td>'+currData[i].userGrade+'</td>'
 			    	+  '<td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" lay-filter="isShow"'+status+'></td>'
