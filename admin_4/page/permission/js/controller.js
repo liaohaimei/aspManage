@@ -63,19 +63,11 @@ layui.config({
 		            			}
 		            		}
 		            		//用户名
-		            		if(usersStr.username.indexOf(selectStr) > -1){
-			            		usersStr["username"] = changeStr(usersStr.username);
+		            		if(usersStr.name.indexOf(selectStr) > -1){
+			            		usersStr["name"] = changeStr(usersStr.name);
 		            		}
-		            		//用户邮箱
-		            		if(usersStr.email.indexOf(selectStr) > -1){
-			            		usersStr["email"] = changeStr(usersStr.email);
-		            		}
-		            		/*//性别
-		            		if(usersStr.userSex.indexOf(selectStr) > -1){
-			            		usersStr["userSex"] = changeStr(usersStr.userSex);
-		            		}
-		            		*/
-		            		if(usersStr.username.indexOf(selectStr)>-1 || usersStr.email.indexOf(selectStr)>-1 ){
+	
+		            		if(usersStr.name.indexOf(selectStr)>-1 ){
 		            			userArray.push(usersStr);
 		            		}
 		            	}
