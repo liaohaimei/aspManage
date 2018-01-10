@@ -1,1 +1,1 @@
-<!--#include file="ajax/deldata.asp"-->
+<!--#include file="ajax/deletedata.asp"-->

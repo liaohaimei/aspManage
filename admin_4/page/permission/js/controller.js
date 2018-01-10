@@ -137,7 +137,7 @@ layui.config({
 	            },2000);
 	        })
 		}else{
-			layer.msg("请选择需要删除的文章");
+			layer.msg("请选择需要删除的记录");
 		}
 	})
 
@@ -150,7 +150,7 @@ layui.config({
 		form.render('checkbox');
 	});
 
-	//通过判断文章是否全部选中来确定全选按钮是否选中
+	//通过判断记录是否全部选中来确定全选按钮是否选中
 	form.on("checkbox(choose)",function(data){
 		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
 		var childChecked = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"]):checked')
@@ -166,7 +166,7 @@ layui.config({
 
 	$("body").on("click",".del-data",function(){  //删除
 		var _this = $(this);
-		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
+		layer.confirm('确定删除此记录？',{icon:3, title:'提示信息'},function(index){
 
 			var url = "delete.asp",
 				id =_this.attr("data-id"),
@@ -244,7 +244,9 @@ layui.config({
 			    	+  '<td class="text-left">'+name+'</td>'
 			    	+  '<td class="text-left">'+description+'</td>'
 			    	+  '<td>'
+					+    '<a class="layui-btn layui-btn-primary layui-btn-mini users_edit" onclick="fun.popView('+id+')"><i class="iconfont icon-edit"></i> 查看</a>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
+			        +    '<a class="layui-btn layui-btn-danger layui-btn-mini del-data" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
 			    	+'</tr>';
 				}
@@ -274,9 +276,28 @@ layui.config({
 })
 
 var fun = {
+    	popView:function(id){//添加
+    	var index = layui.layer.open({
+			title : "创建",
+			type : 2,
+			content : "view.asp?id="+id+"",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+      	},
     	popCreate:function(){//添加
     	var index = layui.layer.open({
-			title : "创建角色",
+			title : "创建",
 			type : 2,
 			content : "create.asp",
 			success : function(layero, index){
@@ -295,7 +316,7 @@ var fun = {
       	},
       	popUpdate:function(id){//添加
     	var index = layui.layer.open({
-			title : "更新角色",
+			title : "更新",
 			type : 2,
 			content : "update.asp?id="+id+"",
 			success : function(layero, index){

@@ -128,7 +128,7 @@ layui.config({
 	            },2000);
 	        })
 		}else{
-			layer.msg("请选择需要删除的文章");
+			layer.msg("请选择需要删除的记录");
 		}
 	})
 
@@ -141,7 +141,7 @@ layui.config({
 		form.render('checkbox');
 	});
 
-	//通过判断文章是否全部选中来确定全选按钮是否选中
+	//通过判断记录是否全部选中来确定全选按钮是否选中
 	form.on("checkbox(choose)",function(data){
 		var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"])');
 		var childChecked = $(data.elem).parents('table').find('tbody input[type="checkbox"]:not([name="show"]):checked')
@@ -157,7 +157,7 @@ layui.config({
 
 	$("body").on("click",".del-data",function(){  //删除
 		var _this = $(this);
-		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
+		layer.confirm('确定删除此记录？',{icon:3, title:'提示信息'},function(index){
 
 			var url = "delete.asp",
 				id =_this.attr("data-id"),
@@ -266,7 +266,7 @@ layui.config({
 var fun = {
     	popCreate:function(){//添加
     	var index = layui.layer.open({
-			title : "创建角色",
+			title : "创建",
 			type : 2,
 			content : "create.asp",
 			success : function(layero, index){
@@ -285,7 +285,7 @@ var fun = {
       	},
       	popUpdate:function(id){//添加
     	var index = layui.layer.open({
-			title : "更新角色",
+			title : "更新",
 			type : 2,
 			content : "update.asp?id="+id+"",
 			success : function(layero, index){
