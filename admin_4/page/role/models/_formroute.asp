@@ -1,11 +1,12 @@
 <input type="hidden" id="updateid" value="<%=id%>">
 <input type="hidden" id="ids" value="">
+<input type="hidden" id="nids" value="">
 <div class="layui-layout-admin site-demo">
   <div class="layui-main">
       <div class="layui-form-item">
 
         <div>
-          <input id="inp-parent" name="parent" value="<%=parent%>" type="text" class="layui-input" readonly="value">
+          <input id="inp-name" name="name" value="<%=name%>" type="text" class="layui-input" readonly="value">
         </div>
       </div>
 
@@ -74,7 +75,7 @@ $(function () {
 //ajax添加路由
 function ajaxCreateData() {
     var updateid = $("#updateid").val();
-    var parent = $("#inp-parent").val();
+    var name = $("#inp-name").val();
     var selectLength = $('#select1 option:selected').length;
     for (var i = 0; i < selectLength; i++) {
         var val = $('#select1 option:selected').eq(i).val();
@@ -82,7 +83,7 @@ function ajaxCreateData() {
             par = {
                 str: val,
                 parentid: updateid,
-                parent: parent
+                name: name
             };
         $.ajax({
             url: url,
@@ -170,25 +171,19 @@ function renderData(item) {
         htm += '<option data-id=' + item[i].id + ' value=' + item[i].child + '>' + item[i].child + '</option>';
     }
     $("#select2").append(htm);
-    var ids = getRouteIds();
-    $("#ids").val(ids);
     //显示可用路由
     getRouteData();
 }
 
 //可用路由
 function getRouteData() {
-    var ids = $("#ids").val();
-    if(ids==""){
-        ids=0;
-    }
     var updateid = $("#updateid").val();
     var url = "data/index_json.asp";
     var relations = {
         sql_class: "wspcms_auth_item", //表名  
         sql_top: "", //取数据总条数 top 10  
         sql_colums: "id,name", //列名，用","隔开，如果全部获取，则填写"*"   
-        sql_whereBy: "and type='2' and id not in("+ids+")",
+        sql_whereBy: "and type='2'",
         sql_orderBy: "order by name asc"
     }
     var Datas = '';
@@ -208,24 +203,26 @@ function getRouteData() {
 function renderRouteData(item) {
     var htm = "";
     for (var i = 0; i < item.length; i++) {
-
         //console.log(item[i].name);
-
+        var rightHasRoute = checkRightHasRoute(item[i].name);
+        if(rightHasRoute){
         htm += '<option data-id=' + item[i].id + ' value=' + item[i].name + '>' + item[i].name + '</option>';
+        }
     }
     $("#select1").append(htm);
 }
 
-
-//获取已选路ID
-function getRouteIds(){
-  var ids="";
-  var opLength =  $("#select2 option").length;
-  for(var i=0;i<opLength;i++){
-    ids+= $("#select2 option").eq(i).attr("data-id")+",";
-  }
-  ids=ids.substring(0,ids.length-1)
-  return(ids);
+//判断右边是已存在该路径
+function checkRightHasRoute(str){
+    var result=true;
+    var opLength =  $("#select2 option").length;
+    for(var i=0;i<opLength;i++){
+      var id=$("#select2 option").eq(i).val();
+      if(str==id){
+        result = false;
+      }
+    }
+    return result;
 }
 
 </script>

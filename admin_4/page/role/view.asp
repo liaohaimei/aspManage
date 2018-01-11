@@ -16,10 +16,10 @@ sty="layui-hide"
 typ=0
 id=getForm("id","get")              '当前ID
 if id<>"" then
-sql = "select * from {pre}auth_item_child where parentid = "&id
+sql = "select * from {pre}auth_item where id = "&id
 set rsObj = dbconn.db(sql,"records1")
 if not rsObj.eof then
-parent	= rsObj("parent")
+name	= rsObj("name")
 end if
 rsObj.close : set rsObj=nothing
 end if

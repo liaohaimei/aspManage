@@ -179,7 +179,6 @@ function renderData(item) {
 //可用路由
 function getRouteData() {
    var ids = $("#ids").val();
-   var ids = $("#ids").val();
     if(ids==""){
         ids=0;
     }
