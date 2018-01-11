@@ -1,44 +1,17 @@
 <input type="hidden" id="updateid" value="<%=id%>">
+<input type="hidden" id="ids" value="">
 <div class="layui-layout-admin site-demo">
   <div class="layui-main">
-    <form class="layui-form"  action="models/model.asp?action=<%=typ%>&id=<%=id%>" method="post">
       <div class="layui-form-item">
-        <label class="layui-form-label">新路由</label>
-        <div class="layui-input-block">
-          <input id="inp-name" name="name" value="<%=name%>" type="text" class="layui-input" placeholder="新路由">
+
+        <div>
+          <input id="inp-parent" name="parent" value="<%=parent%>" type="text" class="layui-input" readonly="value">
         </div>
       </div>
-      <div class="layui-form-item">
-        <div class="layui-input-block">
-          <button class="layui-btn"><%=btnName%></button>
-        </div>
-      </div>
-    </form>
+
     <form   action="models/model.asp?action=<%=typ%>&id=<%=id%>" method="post">
       <div class="content">
         <select multiple="multiple" id="select1" style="width:calc(50% - 25px); height:350px; float:left; border:4px rgba(0,0,0,.2) outset; border-radius: 4px; padding:4px; ">
-        <%
-        SET Fso = CreateObject("Scripting.FileSystemObject")
-        Set X = Fso.GetFolder(Server.MapPath("../"))
-
-        For Each Fo in X.Subfolders '遍历目录
-              Set Y = Fso.GetFolder(Server.MapPath("../"&Fo.Name&"/"))
-              For Each Fi in Y.Files '遍历文件
-              if checkName("/"&Fo.Name&"/"&Fi.Name)<1 then
-              %>
-              <option value="/<%=Fo.Name%>/<%=Fi.Name%>">/<%=Fo.Name%>/<%=Fi.Name%></option>
-              <%
-              end if
-              Next
-        Next
-
-        function checkName(str)
-          where = " where 1=1"
-          where = where&" and name='"&str&"'"
-          Sql="select count(*) from {pre}auth_item "&where&""
-          checkName = dbconn.db(Sql,"execute")(0)
-        end function
-        %>
 </select>
         
       </div>
@@ -62,9 +35,10 @@
 <script>
 //下拉框交换JQuery
 $(function () {
+    
     //显示已设置的路由
-    getSelectData()
-        //移到右边
+    getSelectData();
+    //移到右边
     $('#add').click(function () {
         //获取选中的选项，删除并追加给对方
         ajaxCreateData();
@@ -99,12 +73,16 @@ $(function () {
 
 //ajax添加路由
 function ajaxCreateData() {
+    var updateid = $("#updateid").val();
+    var parent = $("#inp-parent").val();
     var selectLength = $('#select1 option:selected').length;
     for (var i = 0; i < selectLength; i++) {
         var val = $('#select1 option:selected').eq(i).val();
         var url = "ajax/createdata.asp",
             par = {
-                str: val
+                str: val,
+                parentid: updateid,
+                parent: parent
             };
         $.ajax({
             url: url,
@@ -159,13 +137,14 @@ function ajaxDeleteData() {
 
 //ajax Get数据
 function getSelectData() {
+    var updateid = $("#updateid").val();
     var url = "data/index_json.asp";
     var relations = {
-        sql_class: "wspcms_auth_item", //表名  
+        sql_class: "wspcms_auth_item_child", //表名  
         sql_top: "", //取数据总条数 top 10  
-        sql_colums: "id,name", //列名，用","隔开，如果全部获取，则填写"*"   
-        sql_whereBy: "and type='1'",
-        sql_orderBy: "order by name asc"
+        sql_colums: "id,parent,child", //列名，用","隔开，如果全部获取，则填写"*"   
+        sql_whereBy: "and parentid = " + updateid + "",
+        sql_orderBy: "order by parent asc"
     }
     var Datas = '';
     $.post(url, relations, function (data) {
@@ -186,11 +165,67 @@ function renderData(item) {
     var htm = "";
     for (var i = 0; i < item.length; i++) {
 
-        //console.log(item[i].name);
+        //console.log(item[i].child);
 
-        htm += '<option value=' + item[i].name + '>' + item[i].name + '</option>';
+        htm += '<option data-id=' + item[i].id + ' value=' + item[i].child + '>' + item[i].child + '</option>';
     }
     $("#select2").append(htm);
+    var ids = getRouteIds();
+    $("#ids").val(ids);
+    //显示可用路由
+    getRouteData();
+}
+
+//可用路由
+function getRouteData() {
+    var ids = $("#ids").val();
+    if(ids==""){
+        ids=0;
+    }
+    var updateid = $("#updateid").val();
+    var url = "data/index_json.asp";
+    var relations = {
+        sql_class: "wspcms_auth_item", //表名  
+        sql_top: "", //取数据总条数 top 10  
+        sql_colums: "id,name", //列名，用","隔开，如果全部获取，则填写"*"   
+        sql_whereBy: "and type='2' and id not in("+ids+")",
+        sql_orderBy: "order by name asc"
+    }
+    var Datas = '';
+    $.post(url, relations, function (data) {
+        data = JSON.parse(data);
+        Datas = data.rows;
+        if (window.sessionStorage.getItem("sname")) {
+            var sname = window.sessionStorage.getItem("sname");
+            Datas = JSON.parse(sname).concat(Datas);
+        }
+        renderRouteData(Datas);
+
+    })
+}
+
+//渲染路由数据
+function renderRouteData(item) {
+    var htm = "";
+    for (var i = 0; i < item.length; i++) {
+
+        //console.log(item[i].name);
+
+        htm += '<option data-id=' + item[i].id + ' value=' + item[i].name + '>' + item[i].name + '</option>';
+    }
+    $("#select1").append(htm);
+}
+
+
+//获取已选路ID
+function getRouteIds(){
+  var ids="";
+  var opLength =  $("#select2 option").length;
+  for(var i=0;i<opLength;i++){
+    ids+= $("#select2 option").eq(i).attr("data-id")+",";
+  }
+  ids=ids.substring(0,ids.length-1)
+  return(ids);
 }
 
 </script>
