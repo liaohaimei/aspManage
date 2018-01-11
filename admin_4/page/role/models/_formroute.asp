@@ -1,6 +1,4 @@
 <input type="hidden" id="updateid" value="<%=id%>">
-<input type="hidden" id="ids" value="">
-<input type="hidden" id="nids" value="">
 <div class="layui-layout-admin site-demo">
   <div class="layui-main">
       <div class="layui-form-item">
