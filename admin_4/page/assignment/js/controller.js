@@ -248,6 +248,7 @@ layui.config({
 			    	+  '<td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" lay-filter="isShow"'+status+'></td>'
 			    	+  '<td>'+currData[i].userEndTime+'</td>'
 			    	+  '<td>'
+					+    '<a class="layui-btn layui-btn-primary layui-btn-mini users_edit" onclick="fun.popView('+id+')"><i class="iconfont icon-edit"></i> 查看</a>'
 					+    '<a class="layui-btn layui-btn-mini users_edit" onclick="fun.popUpdate('+id+')"><i class="iconfont icon-edit"></i> 编辑</a>'
 					+    '<a class="layui-btn layui-btn-danger layui-btn-mini del-data" data-id="'+id+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
@@ -279,6 +280,25 @@ layui.config({
 })
 
 var fun = {
+    	popView:function(id){//添加
+    	var index = layui.layer.open({
+			title : "分配",
+			type : 2,
+			content : "view.asp?id="+id+"",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		//改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+      	},
     	popCreate:function(){//添加
     	var index = layui.layer.open({
 			title : "创建角色",
