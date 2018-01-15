@@ -29,7 +29,12 @@ if action="1" then
 	sqlstr="[name]='"&name&"',[type]='"&type2&"',[description]='"&description&"',[rule_name]='"&rule_name&"',[data]='"&data&"',[updated_at]='"&updated_at&"'"
 	updateSql = "update {pre}auth_item  set "&sqlstr&" where ID="&id
 	dbconn.db updateSql,"execute"
-	echo "<script>$(function(){fun._alertSuccess()})</script>"
+	if err  then err.clear : errorStatus=0 else errorStatus=1 end if
+		if errorStatus=1 then
+		echo "<script>$(function(){fun._alertSuccess()})</script>"
+		else
+		echo "<script>$(function(){fun._alertFail()})</script>"
+		end if
 	else
 	echo "<script>$(function(){fun._alertFail()})</script>"
 	end if
