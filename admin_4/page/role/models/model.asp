@@ -52,5 +52,20 @@ function editcheckName(str,id)
  	editcheckName = dbconn.db(Sql,"execute")(0)
 end function
 
+'修改权限中的名称
+function updatePermissionName()
+	sqlstr="[parent]='"&str&"'"
+	updateSql = "update {pre}auth_item_child  set "&sqlstr&" where ID="&id
+	dbconn.db updateSql,"execute"
+end function
+
+'修改分配中的名称
+function updateAssignmentName()
+	sqlstr="[item_name]='"&str&"'"
+	updateSql = "update {pre}auth_assignment  set "&sqlstr&" where item_name='"&name&"'"
+	dbconn.db updateSql,"execute"
+end function
+
+
 %>
 
