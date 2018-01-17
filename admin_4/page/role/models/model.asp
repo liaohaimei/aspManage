@@ -31,6 +31,8 @@ if action="1" then
 	dbconn.db updateSql,"execute"
 	if err  then err.clear : errorStatus=0 else errorStatus=1 end if
 		if errorStatus=1 then
+			call selectUpdataPermissionData(id,name)
+			call selectUpdataAssignmentData(name,name)
 		echo "<script>$(function(){fun._alertSuccess()})</script>"
 		else
 		echo "<script>$(function(){fun._alertFail()})</script>"
@@ -53,19 +55,48 @@ function editcheckName(str,id)
 end function
 
 '修改权限中的名称
-function updatePermissionName()
+function updatePermissionName(id,str)
 	sqlstr="[parent]='"&str&"'"
 	updateSql = "update {pre}auth_item_child  set "&sqlstr&" where ID="&id
 	dbconn.db updateSql,"execute"
 end function
 
 '修改分配中的名称
-function updateAssignmentName()
+function updateAssignmentName(id,str)
 	sqlstr="[item_name]='"&str&"'"
-	updateSql = "update {pre}auth_assignment  set "&sqlstr&" where item_name='"&name&"'"
+	updateSql = "update {pre}auth_assignment  set "&sqlstr&" where id="&id&""
 	dbconn.db updateSql,"execute"
 end function
 
+function selectUpdataPermissionData(id,str)
+	where = " where 1=1"
+	where = where&" and parentid="&id&""
+	sqlstr="select id from {pre}auth_item_child "&where&""
+	set rsobj = dbconn.db(sqlstr,"records1")
+	if not (rsobj.eof or rsobj.bof) then
+		do while not rsobj.eof
+		echo rsobj("id")
+		call updatePermissionName(rsobj("id"),str)
+		rsobj.movenext
+		loop
+	end if
+	rsobj.close : set rsobj=nothing
+end function
+
+function selectUpdataAssignmentData(name,str)
+	where = " where 1=1"
+	where = where&" and item_name='"&name&"'"
+	sqlstr="select id from {pre}auth_assignment "&where&""
+	set rsobj = dbconn.db(sqlstr,"records1")
+	if not (rsobj.eof or rsobj.bof) then
+		do while not rsobj.eof
+		echo rsobj("id")
+		call updateAssignmentName(rsobj("id"),str)
+		rsobj.movenext
+		loop
+	end if
+	rsobj.close : set rsobj=nothing
+end function
 
 %>
 
