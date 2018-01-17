@@ -76,10 +76,12 @@ function ajaxCreateData() {
     var selectLength = $('#select1 option:selected').length;
     for (var i = 0; i < selectLength; i++) {
         var val = $('#select1 option:selected').eq(i).val();
+        var itemid =  $('#select1 option:selected').eq(i).attr("data-id");
         var url = "ajax/createdata.asp",
             par = {
                 str: val,
-                parentid: updateid
+                parentid: updateid,
+                itemid:itemid
             };
         $.ajax({
             url: url,

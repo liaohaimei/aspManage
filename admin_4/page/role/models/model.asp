@@ -32,7 +32,7 @@ if action="1" then
 	if err  then err.clear : errorStatus=0 else errorStatus=1 end if
 		if errorStatus=1 then
 			call selectUpdataPermissionData(id,name)
-			call selectUpdataAssignmentData(name,name)
+			call selectUpdataAssignmentData(id,name)
 		echo "<script>$(function(){fun._alertSuccess()})</script>"
 		else
 		echo "<script>$(function(){fun._alertFail()})</script>"
@@ -68,6 +68,7 @@ function updateAssignmentName(id,str)
 	dbconn.db updateSql,"execute"
 end function
 
+'查找所有对应要修改的权限名称
 function selectUpdataPermissionData(id,str)
 	where = " where 1=1"
 	where = where&" and parentid="&id&""
@@ -75,7 +76,6 @@ function selectUpdataPermissionData(id,str)
 	set rsobj = dbconn.db(sqlstr,"records1")
 	if not (rsobj.eof or rsobj.bof) then
 		do while not rsobj.eof
-		echo rsobj("id")
 		call updatePermissionName(rsobj("id"),str)
 		rsobj.movenext
 		loop
@@ -83,9 +83,10 @@ function selectUpdataPermissionData(id,str)
 	rsobj.close : set rsobj=nothing
 end function
 
-function selectUpdataAssignmentData(name,str)
+'查找所有对应要修改的分配名称
+function selectUpdataAssignmentData(id,str)
 	where = " where 1=1"
-	where = where&" and item_name='"&name&"'"
+	where = where&" and item_id="&id&""
 	sqlstr="select id from {pre}auth_assignment "&where&""
 	set rsobj = dbconn.db(sqlstr,"records1")
 	if not (rsobj.eof or rsobj.bof) then
