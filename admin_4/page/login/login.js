@@ -15,7 +15,13 @@ layui.config({
 	
 	//登录按钮事件
 	form.on("submit(login)",function(data){
-		window.location.href = "../../index.html";
+		var username = data.field.username;
+		var password = data.field.password;
+		var code = data.field.code;
+		console.log(username);
+		console.log(password);
+		console.log(code);
+		//window.location.href = "../../index.html";
 		return false;
 	})
 })
