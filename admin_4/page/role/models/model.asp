@@ -91,13 +91,14 @@ function selectUpdataAssignmentData(id,str)
 	set rsobj = dbconn.db(sqlstr,"records1")
 	if not (rsobj.eof or rsobj.bof) then
 		do while not rsobj.eof
-		echo rsobj("id")
 		call updateAssignmentName(rsobj("id"),str)
 		rsobj.movenext
 		loop
 	end if
 	rsobj.close : set rsobj=nothing
 end function
+
+'事务  存储过程
 
 %>
 
