@@ -7,7 +7,7 @@ layui.config({
 		$ = layui.jquery;
 
 	//加载页面数据
-	var url = "data/index_json.asp"  
+	var url = "data/json_data.asp"  
 	var relations = {  
 	    sql_class: "wspcms_auth_item", //表名  
 	    sql_top: "",  //取数据总条数 top 10  

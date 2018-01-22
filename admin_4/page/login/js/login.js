@@ -18,6 +18,22 @@ layui.config({
 		var username = data.field.username;
 		var password = data.field.password;
 		var code = data.field.code;
+		//加载页面数据
+		var url = "data/json_data.asp"  
+		var relations = {  
+		    sql_class: "wspcms_admin", //表名  
+		    sql_top: "",  //取数据总条数 top 10  
+		    sql_colums: "id,username,email,status", //列名，用","隔开，如果全部获取，则填写"*"   
+		    sql_whereBy: "and username='"+username+"' and password='"+password+"'",  
+		    sql_orderBy: "order by id asc"  
+		}
+		var Datas = '';
+		$.post(url,relations, function(data){
+			data=JSON.parse(data);
+			Datas = data.rows;
+			console.log(Datas);
+			
+		})
 		console.log(username);
 		console.log(password);
 		console.log(code);
